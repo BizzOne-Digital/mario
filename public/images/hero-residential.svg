@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Residential glass craftsmanship">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071A2B"/>
+      <stop offset="55%" stop-color="#0D2A40"/>
+      <stop offset="100%" stop-color="#101820"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#CDEFF5" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#7FD7EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#F4FAFC" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7FD7EA" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#CDEFF5" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#7FD7EA" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="980" cy="120" r="90" fill="#7FD7EA" opacity="0.12"/>
+  <rect x="0" y="120" width="1200" height="8" fill="url(#ray)" opacity="0.5"/>
+  
+  <g opacity="0.95">
+    <rect x="120" y="160" width="420" height="480" rx="18" fill="url(#glass)" stroke="#7FD7EA" stroke-opacity="0.45" stroke-width="2"/>
+    <path d="M140 200 L500 180" stroke="#CDEFF5" stroke-opacity="0.55" stroke-width="2"/>
+    <path d="M150 420 L510 390" stroke="#7FD7EA" stroke-opacity="0.25" stroke-width="18"/>
+  </g>
+  <rect x="620" y="220" width="460" height="360" rx="16" fill="#101820" stroke="#7E8B94" stroke-opacity="0.5"/>
+  <rect x="660" y="260" width="180" height="220" rx="8" fill="url(#glass)" stroke="#7FD7EA" stroke-opacity="0.4"/>
+  <rect x="870" y="260" width="180" height="220" rx="8" fill="url(#glass)" stroke="#CDEFF5" stroke-opacity="0.35"/>
+  <rect x="660" y="510" width="390" height="40" rx="6" fill="#071A2B"/>
+  <path d="M700 300 L820 280 L820 450 L700 470 Z" fill="#CDEFF5" opacity="0.18"/>
+
+  <text x="48" y="760" fill="#7E8B94" font-family="Georgia, serif" font-size="22">Residential glass craftsmanship</text>
+</svg>

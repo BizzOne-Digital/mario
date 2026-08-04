@@ -1,0 +1,42 @@
+import { connectDb } from "@/lib/db";
+import {
+  jsonOk,
+  parseJsonBody,
+  requireAdminSession,
+} from "@/lib/api";
+import { revalidateSettingsAffected } from "@/lib/revalidate";
+import { siteSettingsUpdateSchema } from "@/lib/validations";
+import { SiteSettings } from "@/models";
+
+export async function GET() {
+  const auth = await requireAdminSession();
+  if ("response" in auth) return auth.response;
+
+  await connectDb();
+  let settings = await SiteSettings.findOne().lean();
+  if (!settings) {
+    const created = await SiteSettings.create({});
+    settings = created.toObject();
+  }
+
+  return jsonOk({ settings });
+}
+
+export async function PUT(request: Request) {
+  const auth = await requireAdminSession();
+  if ("response" in auth) return auth.response;
+
+  const parsed = await parseJsonBody(request, siteSettingsUpdateSchema);
+  if ("response" in parsed) return parsed.response;
+
+  await connectDb();
+  const settings = await SiteSettings.findOneAndUpdate(
+    {},
+    { $set: parsed.data },
+    { new: true, upsert: true, setDefaultsOnInsert: true },
+  ).lean();
+
+  revalidateSettingsAffected();
+
+  return jsonOk({ settings });
+}

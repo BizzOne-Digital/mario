@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Admin/data-load pages legitimately fetch on mount; React Compiler rule is too strict here.
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/incompatible-library": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

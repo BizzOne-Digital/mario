@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Window glass replacement">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071A2B"/>
+      <stop offset="55%" stop-color="#0D2A40"/>
+      <stop offset="100%" stop-color="#101820"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#CDEFF5" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#7FD7EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#F4FAFC" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7FD7EA" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#CDEFF5" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#7FD7EA" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="980" cy="120" r="90" fill="#7FD7EA" opacity="0.12"/>
+  <rect x="0" y="120" width="1200" height="8" fill="url(#ray)" opacity="0.5"/>
+  
+  <rect x="260" y="140" width="680" height="520" rx="8" fill="#101820" stroke="#7E8B94"/>
+  <rect x="300" y="180" width="280" height="200" fill="url(#glass)" stroke="#7FD7EA" stroke-opacity="0.5"/>
+  <rect x="620" y="180" width="280" height="200" fill="url(#glass)" stroke="#7FD7EA" stroke-opacity="0.5"/>
+  <rect x="300" y="420" width="280" height="200" fill="url(#glass)" stroke="#CDEFF5" stroke-opacity="0.45"/>
+  <rect x="620" y="420" width="280" height="200" fill="url(#glass)" stroke="#CDEFF5" stroke-opacity="0.45"/>
+  <line x1="580" y1="180" x2="580" y2="620" stroke="#7E8B94" stroke-width="10"/>
+  <line x1="300" y1="400" x2="900" y2="400" stroke="#7E8B94" stroke-width="10"/>
+
+  <text x="48" y="760" fill="#7E8B94" font-family="Georgia, serif" font-size="22">Window glass replacement</text>
+</svg>
