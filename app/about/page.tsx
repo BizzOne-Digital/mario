@@ -68,9 +68,9 @@ export default async function AboutPage() {
           <SectionReveal className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
               src={imgs.mario}
-              alt="Professional glass installation"
+              alt={`${settings.ownerName || "Mario"} of Express Glass`}
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="50vw"
             />
           </SectionReveal>

@@ -283,7 +283,7 @@ export const PAGE_IMAGES = {
   about: {
     hero: MEDIA.residential.install,
     story: MEDIA.work.measure,
-    mario: MEDIA.work.technician,
+    mario: "/images/about-mario.jpg",
     experience: MEDIA.heroes.residentialWindows,
     craft: MEDIA.shower.hardware,
     mobile: MEDIA.commercial.officeGlass,
