@@ -67,7 +67,7 @@ export default async function TestimonialsPage() {
               {
                 icon: Phone,
                 title: "Direct contact",
-                body: `Call ${settings.primaryPhone || BUSINESS.primaryPhone} or ${settings.secondaryPhone || BUSINESS.secondaryPhone}.`,
+                body: `Call ${settings.primaryPhone || BUSINESS.primaryPhone}.`,
               },
             ].map((item) => (
               <div key={item.title} className="glass-panel rounded-2xl p-5">

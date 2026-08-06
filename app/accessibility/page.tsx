@@ -43,7 +43,8 @@ export default async function AccessibilityPage() {
 
       <h2 className="!mt-8 font-display text-2xl text-frost">Business contact</h2>
       <p>
-        {BUSINESS.name} · {BUSINESS.address} · {BUSINESS.primaryPhone} / {BUSINESS.secondaryPhone} · CA License #
+        {BUSINESS.name} · Fully mobile · {BUSINESS.city}, {BUSINESS.state} area · {BUSINESS.primaryPhone}
+        {BUSINESS.faxPhone ? ` · Fax ${BUSINESS.faxPhone}` : ""} · CA License #
         {BUSINESS.licenseNumber}
       </p>
     </LegalLayout>

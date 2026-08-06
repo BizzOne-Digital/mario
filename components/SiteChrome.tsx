@@ -18,6 +18,7 @@ type Props = {
   logoSrc: string;
   businessName: string;
   secondaryPhone: string;
+  faxPhone: string;
   address: string;
   licenseNumber: string;
   footerDescription: string;
@@ -40,6 +41,7 @@ export function SiteChrome({
   primaryPhone,
   businessName,
   secondaryPhone,
+  faxPhone,
   address,
   licenseNumber,
   footerDescription,
@@ -84,6 +86,7 @@ export function SiteChrome({
             businessName={businessName}
             primaryPhone={primaryPhone}
             secondaryPhone={secondaryPhone}
+            faxPhone={faxPhone}
             email={email}
             address={address}
             licenseNumber={licenseNumber}

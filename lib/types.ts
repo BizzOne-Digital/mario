@@ -290,6 +290,7 @@ export interface SiteSettingsDoc extends Timestamps {
   favicon: string;
   primaryPhone: string;
   secondaryPhone: string;
+  faxPhone: string;
   email: string;
   address: string;
   hours: string;

@@ -6,6 +6,7 @@ type SettingsLike = Pick<
   | "businessName"
   | "primaryPhone"
   | "secondaryPhone"
+  | "faxPhone"
   | "email"
   | "address"
   | "licenseNumber"
@@ -15,7 +16,7 @@ type SettingsLike = Pick<
 
 export function localBusinessJsonLd(settings: SettingsLike) {
   const phone = settings.primaryPhone || BUSINESS.primaryPhone;
-  const address = settings.address || BUSINESS.address;
+  const street = (settings.address || BUSINESS.address || "").trim();
 
   return {
     "@context": "https://schema.org",
@@ -23,29 +24,41 @@ export function localBusinessJsonLd(settings: SettingsLike) {
     name: settings.businessName || BUSINESS.name,
     description:
       settings.defaultSeo?.description ||
-      "Residential and commercial glass services in Riverside, CA.",
+      "Fully mobile residential and light commercial glass services in Riverside, CA and surrounding communities.",
     telephone: phone,
+    ...(settings.faxPhone?.trim() || BUSINESS.faxPhone
+      ? { faxNumber: settings.faxPhone?.trim() || BUSINESS.faxPhone }
+      : {}),
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1440 3rd Street #21",
-      addressLocality: "Riverside",
-      addressRegion: "CA",
-      postalCode: "92507",
-      addressCountry: "US",
-    },
+    ...(street
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: street,
+            addressLocality: BUSINESS.city,
+            addressRegion: BUSINESS.state,
+            addressCountry: "US",
+          },
+        }
+      : {
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: BUSINESS.city,
+            addressRegion: BUSINESS.state,
+            addressCountry: "US",
+          },
+        }),
     areaServed: (settings.serviceAreas?.length
       ? settings.serviceAreas
       : ["Riverside", "Corona", "Southern California"]
     ).map((name) => ({ "@type": "Place", name })),
     ...(settings.email ? { email: settings.email } : {}),
-    ...(settings.secondaryPhone
+    ...(settings.secondaryPhone?.trim()
       ? { contactPoint: [{ "@type": "ContactPoint", telephone: settings.secondaryPhone, contactType: "customer service" }] }
       : {}),
     identifier: `CA License #${settings.licenseNumber || BUSINESS.licenseNumber}`,
     image: "/logos/express-glass-logo-horizontal.svg",
     priceRange: "$$",
-    addressDisplay: address,
   };
 }
 

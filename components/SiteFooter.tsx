@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
+import { Phone, Printer } from "lucide-react";
 import { BUSINESS, FOOTER_LINKS, NAV_LINKS } from "@/lib/constants";
 
 type Props = {
   businessName?: string;
   primaryPhone?: string;
   secondaryPhone?: string;
+  faxPhone?: string;
   email?: string;
   address?: string;
   licenseNumber?: string;
@@ -17,12 +18,13 @@ export function SiteFooter({
   businessName = BUSINESS.name,
   primaryPhone = BUSINESS.primaryPhone,
   secondaryPhone = BUSINESS.secondaryPhone,
+  faxPhone = BUSINESS.faxPhone,
   email = "",
-  address = BUSINESS.address,
   licenseNumber = BUSINESS.licenseNumber,
-  footerDescription = "Express Glass provides residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
+  footerDescription = "Express Glass provides fully mobile residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
 }: Props) {
   const emailDisplay = email.trim();
+  const faxDisplay = faxPhone.trim();
 
   return (
     <footer className="mt-auto border-t border-glass/15 bg-charcoal/80">
@@ -74,12 +76,27 @@ export function SiteFooter({
               <a href={`tel:${BUSINESS.primaryPhoneTel}`} className="text-frost hover:text-glass">
                 {primaryPhone}
               </a>
-              <br />
-              <a href={`tel:${BUSINESS.secondaryPhoneTel}`} className="hover:text-glass">
-                {secondaryPhone}
-              </a>
+              {secondaryPhone.trim() ? (
+                <>
+                  <br />
+                  <a href={`tel:${BUSINESS.secondaryPhoneTel}`} className="hover:text-glass">
+                    {secondaryPhone}
+                  </a>
+                </>
+              ) : null}
             </span>
           </p>
+          {faxDisplay ? (
+            <p className="flex items-start gap-2">
+              <Printer className="mt-0.5 h-4 w-4 text-glass" />
+              <span>
+                Fax:{" "}
+                <a href={`fax:${BUSINESS.faxPhoneTel}`} className="hover:text-glass">
+                  {faxDisplay}
+                </a>
+              </span>
+            </p>
+          ) : null}
           {emailDisplay ? (
             <p>
               <a href={`mailto:${emailDisplay}`} className="hover:text-glass">
@@ -87,9 +104,8 @@ export function SiteFooter({
               </a>
             </p>
           ) : null}
-          <p className="flex items-start gap-2">
-            <MapPin className="mt-0.5 h-4 w-4 text-glass" />
-            <span>{address}</span>
+          <p className="text-sm text-steel">
+            Fully mobile service · {BUSINESS.city}, {BUSINESS.state} & surrounding communities
           </p>
         </div>
       </div>

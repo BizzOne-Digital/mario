@@ -21,8 +21,8 @@ export default async function PrivacyPolicyPage() {
       <h2 className="!mt-8 font-display text-2xl text-frost">Who we are</h2>
       <p>
         This Privacy Policy describes how {BUSINESS.name} (“we,” “us”) handles information collected through our
-        website and related contact or estimate forms. We are a local glass company serving residential and commercial
-        customers from {BUSINESS.address}.
+        website and related contact or estimate forms. We are a fully mobile local glass company serving residential
+        and commercial customers in the {BUSINESS.city}, {BUSINESS.state} area and surrounding communities.
       </p>
 
       <h2 className="!mt-8 font-display text-2xl text-frost">Information we collect</h2>

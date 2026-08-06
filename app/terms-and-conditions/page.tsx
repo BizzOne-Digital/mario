@@ -67,7 +67,7 @@ export default async function TermsPage() {
         <Link href="/contact" className="text-glass">
           contact Express Glass
         </Link>{" "}
-        or call {BUSINESS.primaryPhone} / {BUSINESS.secondaryPhone}. Our address is {BUSINESS.address}.
+        or call {BUSINESS.primaryPhone}.
       </p>
     </LegalLayout>
   );

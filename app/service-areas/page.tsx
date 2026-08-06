@@ -45,13 +45,13 @@ export default async function ServiceAreasPage() {
           <SectionReveal>
             <h2 className="font-display text-3xl text-frost">Mobile glass service near you</h2>
             <p className="mt-4 leading-relaxed text-steel">
-              Express Glass is based in Riverside and travels to homes and businesses throughout Riverside County,
-              select Orange County communities, and surrounding Southern California areas. Instead of thin
-              city-by-city duplicate pages, this is one clear coverage overview—so you can confirm we serve your
-              community and request an estimate for shower doors, windows, doors, mirrors, or commercial glass.
+              Express Glass is a fully mobile glass company serving homes and businesses throughout Riverside County,
+              select Orange County communities, and surrounding Southern California areas. We come to your property —
+              no shop visit required. Confirm we cover your community and request an estimate for shower doors,
+              windows, doors, mirrors, or small commercial glass.
             </p>
             <p className="mt-4 text-sm text-frost/80">
-              Shop / office: {settings.address || BUSINESS.address}
+              Fully mobile · Based in the Riverside, CA area
             </p>
           </SectionReveal>
           <SectionReveal>
@@ -97,26 +97,17 @@ export default async function ServiceAreasPage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-eg grid gap-8 lg:grid-cols-2 lg:items-center">
+        <div className="container-eg">
           <SectionReveal>
-            <h2 className="font-display text-3xl text-frost">Map & directions</h2>
-            <p className="mt-4 text-steel">
-              Find us at {BUSINESS.addressLine1}, {BUSINESS.city}, {BUSINESS.state} {BUSINESS.zip}. Most work is
-              performed on site at your property—call to confirm travel to your city.
+            <h2 className="font-display text-3xl text-frost">We come to you</h2>
+            <p className="mt-4 max-w-2xl text-steel">
+              Express Glass is fully mobile. Measurement, estimates, and installation happen at your home or business —
+              call to confirm we travel to your city.
             </p>
             <p className="mt-3 text-sm text-steel">
               CA License #{settings.licenseNumber || BUSINESS.licenseNumber} · Licensed, bonded & insured
             </p>
           </SectionReveal>
-          <div className="overflow-hidden rounded-2xl border border-glass/20">
-            <iframe
-              title="Express Glass location map"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(BUSINESS.address)}&output=embed`}
-              className="h-72 w-full max-w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
         </div>
       </section>
 

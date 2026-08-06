@@ -36,7 +36,7 @@ export default async function ServicesPage() {
     (s) => s.slug.includes("repair") || s.slug.includes("replacement"),
   );
   const installation = services.filter(
-    (s) => s.slug.includes("installation") || s.slug.includes("vinyl") || s.slug.includes("custom"),
+    (s) => s.slug.includes("installation") || s.slug.includes("custom"),
   );
   const imgs = PAGE_IMAGES.services;
 

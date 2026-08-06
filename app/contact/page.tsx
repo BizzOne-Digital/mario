@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Clock, MapPin, Phone, Truck } from "lucide-react";
+import { Clock, Phone, Printer, Truck } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { CtaBand } from "@/components/CtaBand";
 import { BUSINESS } from "@/lib/constants";
@@ -11,7 +11,7 @@ import { AREAS } from "@/lib/site-content";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Express Glass in Riverside, CA. Call (951) 407-0868 for residential and commercial glass service.",
+    "Contact Express Glass for fully mobile glass service in Riverside, CA. Call (951) 371-2601.",
 };
 
 export default async function ContactPage() {
@@ -19,9 +19,6 @@ export default async function ContactPage() {
   const emailDisplay = settings.email?.trim() || "";
   const areas = settings.serviceAreas?.length ? settings.serviceAreas : AREAS;
   const imgs = PAGE_IMAGES.contact;
-  const mapSrc = settings.mapEmbed
-    ? null
-    : `https://www.google.com/maps?q=${encodeURIComponent(settings.address || BUSINESS.address)}&output=embed`;
 
   return (
     <main>
@@ -33,7 +30,7 @@ export default async function ContactPage() {
             Contact Express Glass
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-frost/85 sm:text-lg md:text-xl">
-            Call for the fastest response, or send a message with your project details.
+            Fully mobile service — call for the fastest response, or send a message with your project details.
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
             <a
@@ -57,12 +54,25 @@ export default async function ContactPage() {
                   {settings.primaryPhone || BUSINESS.primaryPhone}
                 </a>
               </p>
-              <p className="flex min-w-0 items-center gap-3 text-steel">
-                <Phone className="h-5 w-5 shrink-0 text-glass" />
-                <a href={`tel:${BUSINESS.secondaryPhoneTel}`} className="break-all hover:text-glass">
-                  {settings.secondaryPhone || BUSINESS.secondaryPhone}
-                </a>
-              </p>
+              {(settings.secondaryPhone || BUSINESS.secondaryPhone).trim() ? (
+                <p className="flex min-w-0 items-center gap-3 text-steel">
+                  <Phone className="h-5 w-5 shrink-0 text-glass" />
+                  <a href={`tel:${BUSINESS.secondaryPhoneTel}`} className="break-all hover:text-glass">
+                    {settings.secondaryPhone || BUSINESS.secondaryPhone}
+                  </a>
+                </p>
+              ) : null}
+              {(settings.faxPhone || BUSINESS.faxPhone).trim() ? (
+                <p className="flex min-w-0 items-center gap-3 text-steel">
+                  <Printer className="h-5 w-5 shrink-0 text-glass" />
+                  <span>
+                    Fax:{" "}
+                    <a href={`fax:${BUSINESS.faxPhoneTel}`} className="break-all hover:text-glass">
+                      {settings.faxPhone || BUSINESS.faxPhone}
+                    </a>
+                  </span>
+                </p>
+              ) : null}
               {emailDisplay ? (
                 <p className="text-sm text-steel">
                   <a href={`mailto:${emailDisplay}`} className="hover:text-glass">
@@ -70,10 +80,6 @@ export default async function ContactPage() {
                   </a>
                 </p>
               ) : null}
-              <p className="flex items-start gap-3 text-sm text-steel">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-glass" />
-                {settings.address || BUSINESS.address}
-              </p>
               <p className="flex items-start gap-3 text-sm text-steel">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-glass" />
                 <span>
@@ -85,10 +91,11 @@ export default async function ContactPage() {
               <p className="flex items-start gap-3 text-sm text-frost/80">
                 <Truck className="mt-0.5 h-5 w-5 shrink-0 text-glass" />
                 {settings.mobileServiceNotice ||
-                  "Mobile residential and commercial glass service available across our service area."}
+                  "Fully mobile glass service — we come to your home or business across our service area."}
               </p>
               <p className="text-xs text-steel">
-                CA License #{settings.licenseNumber || BUSINESS.licenseNumber}
+                Based in the {BUSINESS.city}, {BUSINESS.state} area · CA License #
+                {settings.licenseNumber || BUSINESS.licenseNumber}
               </p>
             </div>
 
@@ -99,23 +106,6 @@ export default async function ContactPage() {
                 Full list →
               </Link>
             </div>
-
-            {settings.mapEmbed ? (
-              <div
-                className="overflow-hidden rounded-2xl border border-glass/20 [&_iframe]:h-72 [&_iframe]:w-full"
-                dangerouslySetInnerHTML={{ __html: settings.mapEmbed }}
-              />
-            ) : mapSrc ? (
-              <div className="overflow-hidden rounded-2xl border border-glass/20">
-                <iframe
-                  title="Express Glass on Google Maps"
-                  src={mapSrc}
-                  className="h-72 w-full max-w-full"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-            ) : null}
           </div>
 
           <div>

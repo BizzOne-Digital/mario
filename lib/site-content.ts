@@ -211,13 +211,13 @@ const contentMap: Record<ServiceSlug, ServiceSeed> = {
     slug: "window-glass-replacement",
     summary: "Replacement for cracked, fogged, failed-seal, and aging window glass.",
     intro:
-      "Cracked panes, fog between insulated units, and failed seals reduce clarity and comfort. Express Glass provides residential and commercial window glass replacement—measuring carefully, matching tempered requirements where needed, and installing units that restore a clean view. When a full vinyl window upgrade is the better path, we can discuss that option as well.",
+      "Cracked panes, fog between insulated units, and failed seals reduce clarity and comfort. Express Glass provides residential and light commercial window glass replacement—measuring carefully, matching tempered requirements where needed, and installing glass units that restore a clean view. We replace glass in existing windows (including vinyl frames) — we do not sell or install new vinyl window systems.",
     bullets: [
       "Cracked and broken glass",
       "Hazy and failed-seal insulated units",
-      "Low-E options where appropriate",
+      "Glass replacement in existing vinyl, wood, or aluminum frames",
       "Tempered options where required",
-      "Weather and energy-conscious solutions",
+      "Weather and energy-conscious glass packages",
     ],
     applications: [
       "Fogged dual-pane residential windows",
@@ -239,15 +239,20 @@ const contentMap: Record<ServiceSlug, ServiceSeed> = {
       "Local measurement and installation",
     ],
     repairVsReplace:
-      "Isolated glass failure in an otherwise sound sash often calls for glass-only replacement. Rotting frames, failing hardware, or whole-house performance goals may point to vinyl window installation instead. We help you compare both paths.",
+      "Isolated glass failure in an otherwise sound sash or frame often calls for glass-only replacement — including glass in existing vinyl windows. We do not sell or install full vinyl window units; if frames themselves need replacement, we can advise what a glass replacement can and cannot solve.",
     faqs: [
       {
         question: "Do you replace fogged or failed-seal window glass?",
         answer:
-          "Yes. We replace cracked, broken, hazy, and failed-seal insulated glass units for residential and commercial properties.",
+          "Yes. We replace cracked, broken, hazy, and failed-seal insulated glass units for residential and light commercial properties — including glass in existing vinyl window frames.",
+      },
+      {
+        question: "Do you install or sell vinyl windows?",
+        answer:
+          "No. We do not sell or install new vinyl window systems. We replace the glass (and failed insulated units) in windows you already have.",
       },
     ],
-    relatedServiceSlugs: ["vinyl-windows", "door-glass-replacement"],
+    relatedServiceSlugs: ["door-glass-replacement", "residential-glass-installation"],
     category: "windows",
     images: imgs("window-glass-replacement"),
   },
@@ -385,7 +390,6 @@ const contentMap: Record<ServiceSlug, ServiceSeed> = {
     relatedServiceSlugs: [
       "custom-shower-doors",
       "window-glass-replacement",
-      "vinyl-windows",
       "glass-patio-doors",
     ],
     category: "residential",
@@ -436,51 +440,6 @@ const contentMap: Record<ServiceSlug, ServiceSeed> = {
     category: "commercial",
     images: imgs("commercial-glass-installation"),
   },
-  "vinyl-windows": {
-    name: "Vinyl Window Installation and Replacement",
-    slug: "vinyl-windows",
-    summary: "New and replacement vinyl windows with failed-seal and glass service.",
-    intro:
-      "Aging wood or aluminum windows and chronically fogged units often call for a modern vinyl window solution. Express Glass helps homeowners and property managers evaluate vinyl window installation and replacement—pairing the right glass package with professional measurement so openings look sharp and operate cleanly.",
-    bullets: [
-      "New vinyl windows",
-      "Replacement vinyl windows",
-      "Glass replacement",
-      "Failed-seal service",
-      "Residential and commercial applications",
-    ],
-    applications: [
-      "Whole-house vinyl window upgrades",
-      "Selective room-by-room replacement",
-      "Rental and light commercial properties",
-      "Pairing glass service with frame upgrades",
-    ],
-    materials: [
-      "Vinyl window systems sized to the opening",
-      "Insulated glass packages",
-      "Low-E options where appropriate",
-      "Hardware and screens as specified for the unit",
-    ],
-    processSteps: sharedProcess,
-    benefits: [
-      "Updated curb appeal",
-      "Addresses failed seals and drafty aged units",
-      "Clearer views with new glass packages",
-      "Professional install focused on fit and finish",
-    ],
-    repairVsReplace:
-      "Glass-only replacement can solve fogging when frames are sound. Soft frames, failed hardware, or energy and appearance goals across many openings often favor vinyl window replacement. We help you prioritize rooms and budget.",
-    faqs: [
-      {
-        question: "Can you replace just a few windows?",
-        answer:
-          "Yes. Many projects start with the worst openings and expand as budget allows.",
-      },
-    ],
-    relatedServiceSlugs: ["window-glass-replacement", "residential-glass-installation"],
-    category: "windows",
-    images: imgs("vinyl-windows"),
-  },
   "glass-patio-doors": {
     name: "Glass Patio Doors",
     slug: "glass-patio-doors",
@@ -522,7 +481,7 @@ const contentMap: Record<ServiceSlug, ServiceSeed> = {
           "Yes. We evaluate whether glass panel service or full door replacement is the better path for your opening.",
       },
     ],
-    relatedServiceSlugs: ["door-glass-replacement", "vinyl-windows", "residential-glass-installation"],
+    relatedServiceSlugs: ["door-glass-replacement", "residential-glass-installation", "window-glass-replacement"],
     category: "doors",
     images: imgs("glass-patio-doors"),
   },
@@ -633,28 +592,29 @@ export const DEFAULT_SETTINGS: Omit<SiteSettingsDoc, "_id" | "createdAt" | "upda
   favicon: "/favicon.svg",
   primaryPhone: BUSINESS.primaryPhone,
   secondaryPhone: BUSINESS.secondaryPhone,
+  faxPhone: BUSINESS.faxPhone,
   email: "",
-  address: BUSINESS.address,
+  address: "",
   hours: "Monday–Friday by appointment",
   saturdayHours: "Saturday appointments available upon request",
   mobileServiceNotice:
-    "Mobile residential and light commercial glass service available across our service area.",
+    "Fully mobile glass service — we come to your home or business across our service area.",
   licenseNumber: BUSINESS.licenseNumber,
   licensedBondedInsured: true,
   yearsExperienceText: BUSINESS.sinceText,
   ownerName: BUSINESS.ownerName,
   companyHistory:
-    "Express Glass started in New York in 1980. Mario has served Southern California since 2003 with mobile residential and commercial glass service.",
+    "Express Glass started in New York in 1980. Mario has served Southern California since 2003 with fully mobile residential and light commercial glass service.",
   christianOwnedVisible: true,
   christianOwnedText: "Christian-owned and operated.",
-  specialOfferText: "10% Off for Senior Citizens and Military Personnel",
-  specialOfferEnabled: true,
+  specialOfferText: "",
+  specialOfferEnabled: false,
   serviceAreas: [...SERVICE_AREAS],
   socialLinks: [],
   facebookUrl: "",
   mapEmbed: "",
   footerDescription:
-    "Express Glass provides residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
+    "Express Glass provides fully mobile residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
   footerLinks: [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms & Conditions", href: "/terms-and-conditions" },
@@ -683,13 +643,7 @@ export const DEFAULT_FAQS = [
   {
     question: "How do I request a free estimate?",
     answer:
-      "Call (951) 407-0868 or (951) 371-2601, or use the contact form online. Share your service type, property location, and project details so we can schedule a review.",
-    category: "Estimates",
-  },
-  {
-    question: "Is there a senior or military discount?",
-    answer:
-      "When the current special offer is enabled, Express Glass offers 10% off for senior citizens and military personnel. Ask when you request your estimate.",
+      "Call (951) 371-2601, or use the contact form online. Share your service type, property location, and project details so we can schedule a review.",
     category: "Estimates",
   },
   {
@@ -717,9 +671,15 @@ export const DEFAULT_FAQS = [
     category: "Windows and Doors",
   },
   {
-    question: "Do you install vinyl windows and patio doors?",
+    question: "Do you install vinyl windows?",
     answer:
-      "Yes. Express Glass provides vinyl window installation and replacement as well as glass patio door installation, replacement, and glass panel service.",
+      "No. We do not sell or install new vinyl window systems. We replace cracked, fogged, and failed-seal glass in the windows you already have — including glass in existing vinyl frames. We also install and service glass patio doors.",
+    category: "Windows and Doors",
+  },
+  {
+    question: "Do you install patio doors?",
+    answer:
+      "Yes. Express Glass provides glass patio door installation, replacement, and glass panel service.",
     category: "Windows and Doors",
   },
   {
@@ -761,7 +721,13 @@ export const DEFAULT_FAQS = [
   {
     question: "Do you offer mobile service?",
     answer:
-      "Yes. Express Glass provides mobile residential and light commercial glass service across Riverside, Corona, and surrounding Southern California communities.",
+      "Yes. Express Glass is fully mobile — we come to your home or business across Riverside, Corona, and surrounding Southern California communities. We do not operate from a public shop address.",
+    category: "Service Areas",
+  },
+  {
+    question: "Where are you located?",
+    answer:
+      "We are a mobile glass company based in the Riverside, CA area. All service is done at your property — there is no walk-in shop location.",
     category: "Service Areas",
   },
   {
@@ -801,11 +767,7 @@ export const UPCOMING_BLOG_TOPICS = [
     summary: "How to decide between hardware repair and a full enclosure replacement.",
   },
   {
-    title: "Benefits of Modern Vinyl Windows",
-    summary: "Why homeowners choose vinyl window installation and replacement.",
-  },
-  {
-    title: "Maintaining Glass Patio Doors",
+    title: "Caring for Glass Patio Doors",
     summary: "Simple care tips and when to call for glass panel service.",
   },
 ] as const;
@@ -817,11 +779,11 @@ export const STATIC_BLOG_POSTS = [
     excerpt:
       "Fogging, cracks, drafts, and failed seals are common signals it is time to replace window glass.",
     content:
-      "<p>Window glass that is cracked, fogged between panes, or no longer sealing properly can affect comfort, clarity, and appearance. Express Glass helps homeowners and businesses evaluate whether glass replacement or a broader window upgrade is the right next step.</p><p>Look for condensation between panes, visible cracks, rattling units, or drafts around the sash. A professional assessment clarifies options before small issues become larger problems—without promising specific energy-savings percentages.</p><p>If your frames are still solid, glass-only replacement may restore the opening. When frames are failing, vinyl window installation and replacement can be part of the conversation. Call Express Glass for a free estimate in Riverside, Corona, and nearby communities.</p>",
+      "<p>Window glass that is cracked, fogged between panes, or no longer sealing properly can affect comfort, clarity, and appearance. Express Glass helps homeowners and businesses with professional window glass replacement.</p><p>Look for condensation between panes, visible cracks, rattling units, or drafts around the sash. A professional assessment clarifies options before small issues become larger problems.</p><p>If your frames are still solid — including existing vinyl frames — glass-only replacement may restore the opening. We do not sell or install new vinyl window systems; our focus is replacing the glass. Call Express Glass for a free estimate in Riverside, Corona, and nearby communities.</p>",
     featuredImage: "/images/services/Window-Glass-Replacement.png",
     categories: ["Windows"],
     tags: ["replacement", "maintenance"],
-    relatedServices: ["window-glass-replacement", "vinyl-windows"],
+    relatedServices: ["window-glass-replacement", "door-glass-replacement"],
   },
   {
     title: "Choosing a Custom Shower Door",
@@ -847,18 +809,6 @@ export const STATIC_BLOG_POSTS = [
     tags: ["shower", "hardware"],
     relatedServices: ["shower-door-repair", "custom-shower-doors"],
   },
-  {
-    title: "Benefits of Modern Vinyl Windows",
-    slug: "benefits-of-modern-vinyl-windows",
-    excerpt:
-      "Why homeowners choose vinyl window installation and replacement for comfort and clarity.",
-    content:
-      "<p>Modern vinyl windows are a practical option when aging units are fogged, drafty, or difficult to maintain. Pairing the right glass package with professional installation supports long-term clarity and comfort.</p><p>Not every fogged window requires a full frame replacement. If the existing frame is in good condition, insulated glass replacement may be enough. Express Glass helps you compare glass-only service with vinyl window replacement based on each opening.</p><p>Serving Riverside, Corona, and surrounding Southern California communities with free estimates and mobile service.</p>",
-    featuredImage: "/images/services/Vinyl-Window-Installation-and-Replacement.png",
-    categories: ["Windows"],
-    tags: ["vinyl", "replacement"],
-    relatedServices: ["vinyl-windows", "window-glass-replacement"],
-  },
 ] as const;
 
 export const GALLERY_CATEGORIES_STATIC = [
@@ -881,7 +831,7 @@ export const AREA_BLURBS: Record<string, string> = {
   Corona:
     "Mobile service for Corona homeowners and businesses needing shower glass, window replacement, and storefront work.",
   Eastvale:
-    "Custom shower doors, vinyl windows, and patio door glass for Eastvale homes and light commercial spaces.",
+    "Custom shower doors, window glass replacement, and patio door glass for Eastvale homes and light commercial spaces.",
   "Moreno Valley":
     "Measurement, installation, and repair for Moreno Valley residential and commercial glass projects.",
   Perris:
@@ -899,7 +849,7 @@ export const AREA_BLURBS: Record<string, string> = {
   "Sun City":
     "Senior-friendly mobile glass service in Sun City for windows, showers, and door glass.",
   Temecula:
-    "Temecula-area residential and commercial glass — showers, vinyl windows, and storefronts.",
+    "Temecula-area residential and commercial glass — showers, window glass, and small storefronts.",
   Ontario:
     "Ontario commercial storefront and residential glass replacement with licensed craftsmanship.",
   Murrieta:
@@ -1004,8 +954,8 @@ export const SAMPLE_TESTIMONIALS = [
   {
     customerName: "Robert H.",
     reviewText:
-      "Free estimate over the phone, then Mario came out to measure. Vinyl window work was neat and on schedule. We will call Express Glass again.",
-    service: "Vinyl Windows",
+      "Free estimate over the phone, then Mario came out to measure. Window glass replacement was neat and on schedule. We will call Express Glass again.",
+    service: "Window Glass Replacement",
     location: "Perris, CA",
     rating: 5,
     featured: false,

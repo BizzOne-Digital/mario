@@ -58,6 +58,7 @@ export const siteSettingsUpdateSchema = z
     favicon: z.string().trim().max(500).optional(),
     primaryPhone: z.string().trim().max(40).optional(),
     secondaryPhone: z.string().trim().max(40).optional(),
+    faxPhone: z.string().trim().max(40).optional(),
     email: z.string().trim().max(200).optional(),
     address: z.string().trim().max(300).optional(),
     hours: z.string().trim().max(200).optional(),

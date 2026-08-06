@@ -125,6 +125,15 @@ export default function AdminSettingsPage() {
           <input value={settings.secondaryPhone} onChange={(e) => patch("secondaryPhone", e.target.value)} className={fieldClass()} />
         </label>
         <label className="block text-sm text-slate-300">
+          Fax
+          <input
+            value={settings.faxPhone ?? ""}
+            onChange={(e) => patch("faxPhone", e.target.value)}
+            className={fieldClass()}
+            placeholder="(951) 496-4305"
+          />
+        </label>
+        <label className="block text-sm text-slate-300">
           Business email
           <input
             type="email"

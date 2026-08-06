@@ -118,8 +118,9 @@ Creative EG monogram SVGs live in `public/logos/` (horizontal, icon, light/dark 
 ## Verified business facts (do not invent extras)
 
 - Express Glass — licensed, bonded, insured — CA Contractor’s License **#898000**
-- Phones: **(951) 407-0868**, **(951) 371-2601**
-- Address: **1440 3rd Street #21, Riverside, CA 92507**
+- Phone: **(951) 371-2601**
+- Fax: **(951) 496-4305**
+- Address: mobile service (Riverside, CA area — no public shop address)
 - Hours: Mon–Fri 8:00 a.m.–5:00 p.m.; Saturday by appointment
 - Mobile service; no in-shop repairs
 - Started in New York in 1980; Southern California since 2003; owner Mario

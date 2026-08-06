@@ -56,6 +56,7 @@ export default async function RootLayout({
           logoSrc={settings.logoDark || settings.logo || "/logos/express-glass-logo-dark.svg"}
           businessName={settings.businessName || BUSINESS.name}
           secondaryPhone={settings.secondaryPhone || BUSINESS.secondaryPhone}
+          faxPhone={settings.faxPhone || BUSINESS.faxPhone}
           address={settings.address || BUSINESS.address}
           licenseNumber={settings.licenseNumber || BUSINESS.licenseNumber}
           footerDescription={settings.footerDescription || ""}

@@ -280,7 +280,7 @@ export default async function HomePage() {
             <div className="glass-panel-strong rounded-2xl border-accent/30 px-6 py-8 text-center md:px-10">
               <p className="text-sm tracking-widest text-accent uppercase">Special offer</p>
               <h2 className="mt-2 font-display text-2xl text-frost md:text-3xl">
-                {settings.specialOfferText || "10% Off for Senior Citizens and Military Personnel"}
+                {settings.specialOfferText || "Current promotion"}
               </h2>
               <Link href="/contact" className="btn-primary mt-6 inline-flex">
                 Claim with your estimate

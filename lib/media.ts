@@ -13,7 +13,6 @@ export const LOCAL_SERVICE_IMAGES: Record<ServiceSlug, string> = {
   // Small 1st-floor shop fronts only — no skyscraper / large-crew commercial installs
   "commercial-glass-installation":
     "https://images.unsplash.com/photo-1564419965579-5da68ffdf3af?auto=format&fit=crop&w=1600&q=80",
-  "vinyl-windows": "/images/services/Vinyl-Window-Installation-and-Replacement.png",
   "glass-patio-doors": "/images/Glass-patio-doors.png",
   "storefront-glass-doors":
     "https://images.unsplash.com/photo-1576354998198-99dc1d2c3d36?auto=format&fit=crop&w=1600&q=80",
@@ -201,20 +200,6 @@ export const SERVICE_IMAGES: Record<ServiceSlug, ServiceImageSet> = {
       MEDIA.doors.entryGlass,
       MEDIA.windows.exterior,
       MEDIA.commercial.officeGlass,
-    ],
-  },
-  "vinyl-windows": {
-    hero: LOCAL_SERVICE_IMAGES["vinyl-windows"],
-    overview: MEDIA.windows.replacement,
-    detail: MEDIA.work.measure,
-    process: MEDIA.work.technician,
-    completed: MEDIA.heroes.residentialWindows,
-    gallery: [
-      LOCAL_SERVICE_IMAGES["vinyl-windows"],
-      MEDIA.windows.replacement,
-      MEDIA.windows.exterior,
-      MEDIA.residential.homeExterior,
-      MEDIA.windows.brightRoom,
     ],
   },
   "glass-patio-doors": {
@@ -416,13 +401,6 @@ export const SHOWCASE_GALLERY: ShowcaseGalleryItem[] = [
     caption: "Window glass service",
     categorySlug: "windows",
     serviceSlug: "window-glass-replacement",
-  },
-  {
-    url: MEDIA.windows.vinyl,
-    alt: "Vinyl window installation",
-    caption: "Vinyl window upgrade",
-    categorySlug: "windows",
-    serviceSlug: "vinyl-windows",
   },
   {
     url: MEDIA.doors.patio,
