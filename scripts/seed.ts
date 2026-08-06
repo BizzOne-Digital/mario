@@ -596,40 +596,40 @@ const SERVICES: ServiceSeed[] = [
     name: "Commercial Glass Installation",
     slug: "commercial-glass-installation",
     shortDescription:
-      "Commercial windows, doors, storefronts, mirrors, and office glass installation for businesses.",
+      "Small commercial window glass, door lites, and 1st-floor storefront panels — not high-rise work.",
     category: "commercial",
     displayOrder: 8,
     featured: true,
-    heroEyebrow: "Commercial",
+    heroEyebrow: "Light Commercial",
     heroHeading: "Commercial Glass Installation",
     heroDescription:
-      "Professional commercial glass installation for offices, retail spaces, and facilities that need a polished, functional finish.",
+      "Right-sized glass service for shops and suites: window glass, door lites, and ground-floor storefront panels.",
     overview:
-      "Businesses rely on glass for storefront presence, daylight, and durable interiors. Express Glass provides commercial glass installation and replacement—including windows, doors, storefronts, mirrors, and office glazing—with scheduling awareness for working properties.",
+      "Express Glass handles light commercial glass for small businesses — window glass, door lites, and 1st-floor storefront panels. We are not a high-rise or large-building glazing contractor. Our focus is practical, local work scheduled with your business hours in mind when possible.",
     features: [
-      "Business windows and office glass",
-      "Commercial doors",
-      "Storefront glass and doors",
-      "Mirrors and interior glazing",
-      "Commercial replacement service",
+      "Small-business window glass",
+      "Door lites and entry door glass",
+      "1st-floor storefront panels",
+      "Mirror and interior glass for small spaces",
+      "Replacement of damaged commercial lites",
     ],
     applications: [
-      "Retail storefronts",
-      "Office suites",
-      "Service businesses",
-      "Facility maintenance replacements",
+      "Shop and suite window glass",
+      "Storefront door lites",
+      "Ground-floor professional offices",
+      "Broken or fogged commercial panels",
     ],
     materials: [
-      "Storefront and commercial door glass",
+      "Door lite and entrance door glass",
       "Tempered glass where required",
       "Insulated units for exterior openings",
-      "Interior partition and mirror glass",
+      "Panels matched to existing framing",
     ],
     processSteps: [
       {
         title: "Scope the openings",
         description:
-          "We review the commercial openings, access constraints, and service priorities.",
+          "We review the openings, access, and priorities for your small commercial space.",
       },
       {
         title: "Specify glass and schedule",
@@ -639,22 +639,22 @@ const SERVICES: ServiceSeed[] = [
       {
         title: "Install and clean up",
         description:
-          "Glass is installed professionally with a focus on function and finished appearance.",
+          "Glass is installed carefully with a focus on function and a clean finished look.",
       },
     ],
     benefits: [
-      "Supports a professional commercial appearance",
-      "Replacement and new installation capability",
-      "Experience across storefront and interior glazing needs",
+      "Right-sized for small commercial openings",
+      "Clear scope — no high-rise or tower work",
+      "Replacement when individual panels fail",
     ],
     repairVsReplace:
-      "Damaged lites or doors can often be replaced without rebuilding an entire storefront. We advise based on frame condition, safety needs, and business impact.",
+      "Damaged door lites or window panels can often be replaced without rebuilding an entire storefront. We do not bid large high-rise or multi-story curtain-wall projects.",
     relatedServiceSlugs: ["storefront-glass-doors", "door-glass-replacement", "window-glass-replacement"],
     faqs: [],
-    finalCta: "Contact Express Glass for commercial glass installation service.",
+    finalCta: "Contact Express Glass for small commercial glass service.",
     seoTitle: "Commercial Glass Installation | Express Glass",
     seoDescription:
-      "Commercial glass installation for windows, doors, storefronts, mirrors, and office glazing.",
+      "Light commercial glass for 1st-floor storefronts, door lites, and business window glass in Riverside, CA.",
     detailSections: [],
   },
   {
@@ -795,64 +795,64 @@ const SERVICES: ServiceSeed[] = [
     name: "Commercial Storefront Glass and Doors",
     slug: "storefront-glass-doors",
     shortDescription:
-      "Storefront glass, doors, and commercial replacement or repair for a polished business entrance.",
+      "1st-floor storefront glass, door lites, and small commercial repair — not high-rise buildings.",
     category: "commercial",
     displayOrder: 11,
     featured: false,
     heroEyebrow: "Storefronts",
     heroHeading: "Commercial Storefront Glass & Doors",
     heroDescription:
-      "Professional storefront systems that support a clean commercial appearance and reliable day-to-day use.",
+      "Ground-floor shop fronts and door lites for local businesses — clear, practical glass service.",
     overview:
-      "Your storefront is often the first impression customers get. Express Glass provides commercial storefront glass and door installation, replacement, and repair so businesses can maintain a professional entrance and functional glazing.",
+      "Express Glass replaces and repairs glass for small 1st-floor storefronts and business door lites. We do not install or service high-rise curtain walls or large multi-story commercial towers.",
     features: [
-      "Storefront glass",
-      "Storefront doors",
-      "Commercial window replacement",
-      "Door installation",
-      "Glass repair",
+      "1st-floor storefront glass panels",
+      "Business door glass and door lites",
+      "Window glass for small commercial openings",
+      "Damaged panel replacement",
+      "Glass repair for ground-floor shops",
     ],
     applications: [
-      "Retail storefronts",
-      "Office entries",
-      "Service businesses",
-      "Damaged commercial lites and doors",
+      "Neighborhood retail and shop fronts",
+      "Professional suite entrances (ground floor)",
+      "Broken commercial door glass / door lites",
+      "Single-panel storefront replacement",
     ],
     materials: [
-      "Storefront glazing",
-      "Commercial door glass",
       "Tempered glass where required",
+      "Door lite and entrance door glass",
+      "Panels matched to existing framing",
     ],
     processSteps: [
       {
-        title: "Inspect the storefront",
+        title: "Inspect the opening",
         description:
-          "We evaluate glass, doors, and related hardware needs for the commercial opening.",
+          "We evaluate glass, door lites, and related hardware needs for the ground-floor opening.",
       },
       {
         title: "Plan service around operations",
         description:
-          "Replacement and installation are coordinated with practical access for your business when possible.",
+          "Replacement is coordinated with practical access for your business when possible.",
       },
       {
         title: "Complete the install",
         description:
-          "Glass and doors are installed for security, function, and a finished commercial look.",
+          "Glass is installed for security, function, and a finished look.",
       },
     ],
     benefits: [
-      "Strong first impression for customers",
-      "Repair and replacement options",
-      "Commercial-focused service approach",
+      "Strong first impression for small businesses",
+      "Repair and replacement for individual lites",
+      "Clear focus — not high-rise commercial glazing",
     ],
     repairVsReplace:
-      "Single damaged lites or door glass can often be replaced quickly. Broader frame damage or a full entrance redesign may require larger storefront work—we outline the scope after inspection.",
+      "Single damaged lites or door glass can often be replaced quickly. Large high-rise storefront systems are outside our focus.",
     relatedServiceSlugs: ["commercial-glass-installation", "door-glass-replacement"],
     faqs: [],
-    finalCta: "Call Express Glass for storefront glass and door service.",
+    finalCta: "Call Express Glass for small storefront and door lite service.",
     seoTitle: "Storefront Glass & Doors | Express Glass",
     seoDescription:
-      "Commercial storefront glass and door installation, replacement, and repair.",
+      "1st-floor storefront glass and door lite replacement and repair in Riverside, CA.",
     detailSections: [],
   },
   {
@@ -1250,7 +1250,7 @@ const FAQS = [
   {
     question: "Do you work on commercial storefronts?",
     answer:
-      "Yes. We provide commercial storefront glass and doors, commercial glass installation, and related replacement or repair service for business properties.",
+      "Yes — for small 1st-floor storefronts, door lites, and business window or door glass. We do not work on high-rises or large commercial building glazing.",
     category: "installation-repairs",
     order: 3,
     serviceSlug: "storefront-glass-doors",
@@ -1361,13 +1361,13 @@ async function seedSettings(): Promise<void> {
     hours: "",
     saturdayHours: "",
     mobileServiceNotice:
-      "Mobile residential and commercial glass service available across our service area.",
+      "Mobile residential and light commercial glass service available across our service area.",
     licenseNumber: "898000",
     licensedBondedInsured: true,
     yearsExperienceText: "Serving Southern California since 2003",
     ownerName: "Mario",
     companyHistory:
-      "Express Glass started in New York in 1980. Mario has served Southern California since 2003 with mobile residential and commercial glass service.",
+      "Express Glass started in New York in 1980. Mario has served Southern California since 2003 with mobile residential and light commercial glass service.",
     christianOwnedVisible: false,
     christianOwnedText: "",
     specialOfferText: "10% Off for Senior Citizens and Military Personnel",
@@ -1377,7 +1377,7 @@ async function seedSettings(): Promise<void> {
     facebookUrl: "",
     mapEmbed: "",
     footerDescription:
-      "Express Glass provides residential and commercial glass services across Riverside, Corona, and surrounding Southern California communities.",
+      "Express Glass provides residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
     footerLinks: [
       { label: "Services", href: "/services" },
       { label: "About", href: "/about" },

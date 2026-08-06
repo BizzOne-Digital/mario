@@ -44,7 +44,7 @@ export default async function HomePage() {
             <p className="text-sm tracking-widest text-glass uppercase">Services</p>
             <h2 className="mt-2 font-display text-3xl text-frost md:text-4xl">Glass solutions that fit</h2>
             <p className="mt-3 max-w-2xl text-steel">
-              Residential and commercial design, installation, repair, and replacement across Southern California.
+              Residential and light commercial glass — showers, windows, doors, and small storefront work across Southern California.
             </p>
           </SectionReveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -146,10 +146,10 @@ export default async function HomePage() {
       <section className="section-pad bg-charcoal/30">
         <div className="container-eg">
           <SectionReveal className="text-center">
-            <h2 className="font-display text-3xl text-frost md:text-4xl">Residential & commercial</h2>
+            <h2 className="font-display text-3xl text-frost md:text-4xl">Residential & light commercial</h2>
             <p className="mx-auto mt-3 max-w-2xl text-steel">
-              Mobile service for homes, offices, retail, and facilities across Riverside, Corona, and surrounding
-              communities.
+              Mobile service for homes and small businesses — showers, window and door glass, and 1st-floor
+              storefront door lites across Riverside, Corona, and nearby communities.
             </p>
           </SectionReveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -177,7 +177,8 @@ export default async function HomePage() {
                 <div className="p-6">
                   <h3 className="font-display text-2xl text-frost">Commercial</h3>
                   <p className="mt-2 text-sm text-steel">
-                    Storefronts, office glass, commercial doors, and facility glazing.
+                    Small 1st-floor storefronts, door lites, and business window or door glass — not high-rise or
+                    large building glazing.
                   </p>
                   <Link href="/services/commercial-glass-installation" className="mt-4 inline-block text-glass">
                     Commercial services →

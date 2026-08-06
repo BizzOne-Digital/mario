@@ -20,7 +20,7 @@ export function SiteFooter({
   email = "",
   address = BUSINESS.address,
   licenseNumber = BUSINESS.licenseNumber,
-  footerDescription = "Express Glass provides residential and commercial glass services across Riverside, Corona, and surrounding Southern California communities.",
+  footerDescription = "Express Glass provides residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
 }: Props) {
   const emailDisplay = email.trim();
 

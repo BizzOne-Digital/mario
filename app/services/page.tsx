@@ -13,7 +13,7 @@ import { PAGE_IMAGES } from "@/lib/media";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Residential and commercial glass design, installation, repair, and replacement by Express Glass in Riverside, CA.",
+    "Residential and light commercial glass — showers, windows, doors, and small storefronts — by Express Glass in Riverside, CA.",
 };
 
 export default async function ServicesPage() {
@@ -44,10 +44,10 @@ export default async function ServicesPage() {
     <main>
       <PageHero
         image={imgs.hero}
-        imageAlt="Express Glass commercial and residential services"
+        imageAlt="Express Glass residential and light commercial services"
         eyebrow="Services"
         title="Glass Services"
-        subtitle={`Design, installation, repair, and replacement for homes and businesses across ${(settings.serviceAreas || []).slice(0, 4).join(", ") || "Southern California"}.`}
+        subtitle={`Shower doors, window and door glass, and small 1st-floor storefront work across ${(settings.serviceAreas || []).slice(0, 4).join(", ") || "Southern California"}.`}
         ctas={[
           { href: "/contact", label: "Request Free Estimate" },
           { href: `tel:${BUSINESS.primaryPhoneTel}`, label: "Call Now", variant: "secondary" },
@@ -59,11 +59,10 @@ export default async function ServicesPage() {
           <SectionReveal>
             <h2 className="font-display text-3xl text-frost">How we help</h2>
             <p className="mt-4 max-w-3xl text-steel">
-              Express Glass is a licensed Riverside glass company offering mobile residential and commercial service.
-              Whether you need a custom shower door, fogged window glass replaced, a patio door panel, a bathroom
-              mirror, or storefront glazing, we measure carefully, explain options clearly, and install with lasting
-              workmanship. Browse every service below, or jump to residential, commercial, repair, and installation
-              groupings.
+              Express Glass is a licensed Riverside glass company offering mobile residential and light commercial
+              service. We focus on custom shower doors and enclosures, window and door glass, repairs, and small
+              ground-floor storefront door lites — not high-rise or large building glazing. Browse every service below,
+              or jump to residential, commercial, repair, and installation groupings.
             </p>
           </SectionReveal>
         </div>
@@ -92,7 +91,7 @@ export default async function ServicesPage() {
       <section className="section-pad bg-charcoal/30">
         <div className="container-eg grid gap-8 lg:grid-cols-2 xl:grid-cols-4">
           <FeatureColumn title="Residential" items={residential.slice(0, 5)} image={imgs.residential} />
-          <FeatureColumn title="Commercial" items={commercial.slice(0, 5)} image={imgs.commercial} />
+          <FeatureColumn title="Light commercial" items={commercial.slice(0, 5)} image={imgs.commercial} />
           <FeatureColumn title="Repair & replacement" items={repairs.slice(0, 5)} image={imgs.repair} />
           <FeatureColumn title="Installation" items={installation.slice(0, 5)} image={imgs.process} />
         </div>

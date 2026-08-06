@@ -11,7 +11,7 @@ export function HomeHero({ licenseNumber = BUSINESS.licenseNumber }: Props) {
     <section className="relative min-h-[100svh] overflow-hidden">
       <Image
         src="/images/hero-background.png"
-        alt="Express Glass commercial and residential glass craftsmanship"
+        alt="Express Glass residential and small commercial glass craftsmanship"
         fill
         priority
         className="object-cover object-center"
@@ -37,7 +37,7 @@ export function HomeHero({ licenseNumber = BUSINESS.licenseNumber }: Props) {
 
           <p className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-white/85 sm:text-base md:text-lg">
             Custom shower enclosures, window and door glass replacement, mirrors, patio doors, and
-            commercial storefront service — licensed mobile glass work across Riverside, Corona, and
+            small 1st-floor storefront glass — licensed mobile glass work across Riverside, Corona, and
             surrounding Southern California communities.
           </p>
 

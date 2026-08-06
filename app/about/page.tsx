@@ -125,10 +125,11 @@ export default async function AboutPage() {
       <section className="section-pad bg-charcoal/30">
         <div className="container-eg grid gap-8 lg:grid-cols-2">
           <SectionReveal>
-            <h2 className="font-display text-3xl text-frost">Residential & commercial</h2>
+            <h2 className="font-display text-3xl text-frost">Residential & light commercial</h2>
             <p className="mt-4 text-steel">
-              From custom shower doors and vinyl windows to storefront glass and commercial doors, Express Glass
-              supports both home and business projects with licensed, bonded, and insured service.
+              From custom shower doors and window glass to door lites and small 1st-floor storefronts, Express Glass
+              supports home and small-business projects with licensed, bonded, and insured service — we do not take on
+              high-rise or large commercial building glazing.
             </p>
             <p className="mt-3 text-sm text-frost/80">
               CA License #{settings.licenseNumber || BUSINESS.licenseNumber}
@@ -148,7 +149,7 @@ export default async function AboutPage() {
             <ImageMosaic
               images={[
                 { src: imgs.residential, alt: "Residential shower glass" },
-                { src: imgs.commercial, alt: "Commercial storefront" },
+                { src: imgs.commercial, alt: "Small 1st-floor storefront glass" },
                 { src: imgs.values, alt: "Bright residential interior" },
                 { src: imgs.craft, alt: "Glass hardware detail" },
                 { src: imgs.story, alt: "On-site measurement" },
