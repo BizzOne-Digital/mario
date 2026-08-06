@@ -119,7 +119,7 @@ export function SiteHeader({
                     {servicesOpen ? (
                       <div
                         role="menu"
-                        className="absolute top-full left-1/2 z-[110] mt-3 w-[min(36rem,calc(100%-1.5rem))] max-w-xl -translate-x-1/2 rounded-2xl border border-navy/10 bg-white p-3 shadow-[0_20px_50px_rgba(7,26,43,0.2)]"
+                        className="absolute top-full left-1/2 z-[110] mt-3 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 rounded-2xl border border-navy/10 bg-white p-3 shadow-[0_20px_50px_rgba(7,26,43,0.2)]"
                         onMouseEnter={openServices}
                         onMouseLeave={scheduleCloseServices}
                       >
@@ -131,13 +131,13 @@ export function SiteHeader({
                         >
                           All services →
                         </Link>
-                        <div className="grid grid-cols-2 gap-1">
+                        <div className="grid grid-cols-1 gap-0.5 sm:grid-cols-2">
                           {SERVICES.map((service) => (
                             <Link
                               key={service.slug}
                               href={`/services/${service.slug}`}
                               role="menuitem"
-                              className="rounded-lg px-3 py-2 text-sm text-navy/80 hover:bg-cyan-light/40 hover:text-navy"
+                              className="block rounded-lg px-3 py-2.5 text-sm leading-snug text-navy/80 hover:bg-cyan-light/40 hover:text-navy"
                               onClick={() => setServicesOpen(false)}
                             >
                               {service.name}
