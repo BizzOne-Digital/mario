@@ -274,22 +274,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {settings.specialOfferEnabled ? (
-        <section className="section-pad !pt-0">
-          <div className="container-eg">
-            <div className="glass-panel-strong rounded-2xl border-accent/30 px-6 py-8 text-center md:px-10">
-              <p className="text-sm tracking-widest text-accent uppercase">Special offer</p>
-              <h2 className="mt-2 font-display text-2xl text-frost md:text-3xl">
-                {settings.specialOfferText || "Current promotion"}
-              </h2>
-              <Link href="/contact" className="btn-primary mt-6 inline-flex">
-                Claim with your estimate
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
       <section className="section-pad !pt-0">
         <div className="container-eg">
           <div className="flex items-end justify-between gap-4">

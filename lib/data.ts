@@ -31,7 +31,7 @@ import {
   SiteSettings,
   Testimonial,
 } from "@/models";
-import type { ServiceSlug } from "@/lib/constants";
+import { BUSINESS, type ServiceSlug } from "@/lib/constants";
 
 function leanDoc<T>(doc: unknown): T {
   return JSON.parse(JSON.stringify(doc)) as T;
@@ -52,8 +52,38 @@ export async function getSettings(): Promise<
   return withDbFallback(async () => {
     const settings = await SiteSettings.findOne().lean();
     if (!settings) return { ...DEFAULT_SETTINGS };
-    return leanDoc(settings);
+    return normalizePublicSettings(leanDoc(settings));
   }, { ...DEFAULT_SETTINGS });
+}
+
+/** Strip retired numbers / offers so production DB cannot resurrect them. */
+function normalizePublicSettings(
+  settings: Omit<SiteSettingsDoc, "_id" | "createdAt" | "updatedAt"> & { _id?: string },
+) {
+  const retired = "4070868";
+  const clean = (value?: string) => {
+    const v = (value || "").trim();
+    if (!v) return "";
+    if (v.replace(/\D/g, "").includes(retired)) return "";
+    return v;
+  };
+
+  let primaryPhone = clean(settings.primaryPhone) || BUSINESS.primaryPhone;
+  if (primaryPhone.replace(/\D/g, "").includes(retired)) {
+    primaryPhone = BUSINESS.primaryPhone;
+  }
+
+  return {
+    ...DEFAULT_SETTINGS,
+    ...settings,
+    primaryPhone,
+    // Single public number only — never resurface a retired secondary line.
+    secondaryPhone: "",
+    faxPhone: clean(settings.faxPhone) || BUSINESS.faxPhone,
+    address: "",
+    specialOfferEnabled: false,
+    specialOfferText: "",
+  };
 }
 
 function staticServicesAsDocs(): ServiceDoc[] {

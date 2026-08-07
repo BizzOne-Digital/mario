@@ -23,6 +23,15 @@ export function CtaBand({
   phone = BUSINESS.primaryPhone,
   phoneTel = BUSINESS.primaryPhoneTel,
 }: Props) {
+  const displayPhone =
+    phone.replace(/\D/g, "").includes("4070868") || !phone.trim()
+      ? BUSINESS.primaryPhone
+      : phone;
+  const displayTel =
+    phoneTel.replace(/\D/g, "").includes("4070868") || !phoneTel.trim()
+      ? BUSINESS.primaryPhoneTel
+      : phoneTel;
+
   return (
     <section className="section-pad !pt-0 !pb-20">
       <div className="container-eg">
@@ -43,9 +52,9 @@ export function CtaBand({
               <Link href={primaryHref} className="btn-primary w-full sm:w-auto">
                 {primaryLabel}
               </Link>
-              <a href={`tel:${phoneTel}`} className="btn-secondary w-full sm:w-auto">
+              <a href={`tel:${displayTel}`} className="btn-secondary w-full sm:w-auto">
                 <Phone className="h-4 w-4" />
-                {phone}
+                {displayPhone}
               </a>
             </div>
           </div>

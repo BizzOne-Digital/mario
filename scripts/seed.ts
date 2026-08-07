@@ -1416,7 +1416,10 @@ async function seedPages(): Promise<void> {
 
 async function seedFaqs(): Promise<void> {
   await FAQ.deleteMany({
-    question: /senior or military discount/i,
+    $or: [
+      { question: /senior|military/i },
+      { answer: /senior|military|10%\s*off/i },
+    ],
   });
 
   for (const cat of FAQ_CATEGORIES) {
