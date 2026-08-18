@@ -593,7 +593,7 @@ export const DEFAULT_SETTINGS: Omit<SiteSettingsDoc, "_id" | "createdAt" | "upda
   primaryPhone: BUSINESS.primaryPhone,
   secondaryPhone: BUSINESS.secondaryPhone,
   faxPhone: BUSINESS.faxPhone,
-  email: "",
+  email: BUSINESS.email,
   address: "",
   hours: "Monday–Friday by appointment",
   saturdayHours: "Saturday appointments available upon request",
@@ -620,7 +620,7 @@ export const DEFAULT_SETTINGS: Omit<SiteSettingsDoc, "_id" | "createdAt" | "upda
     { label: "Terms & Conditions", href: "/terms-and-conditions" },
     { label: "Accessibility", href: "/accessibility" },
   ],
-  contactRecipient: "",
+  contactRecipient: BUSINESS.email,
   defaultSeo: {
     title: "Express Glass | Riverside, CA",
     description:

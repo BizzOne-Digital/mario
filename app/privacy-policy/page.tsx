@@ -57,7 +57,11 @@ export default async function PrivacyPolicyPage() {
       <h2 className="!mt-8 font-display text-2xl text-frost">Your choices</h2>
       <p>
         You may call us to update contact details associated with an open request or to ask questions about information
-        you submitted. For service requests, call {BUSINESS.primaryPhone} or use the{" "}
+        you submitted. For service requests, call {BUSINESS.primaryPhone}, email{" "}
+        <a href={`mailto:${BUSINESS.email}`} className="text-glass">
+          {BUSINESS.email}
+        </a>
+        , or use the{" "}
         <Link href="/contact" className="text-glass">
           contact form
         </Link>

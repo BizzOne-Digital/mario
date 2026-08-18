@@ -5,6 +5,7 @@ import {
   jsonOk,
   parseJsonBody,
 } from "@/lib/api";
+import { BUSINESS } from "@/lib/constants";
 import { sendEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
   const recipient =
     settings?.contactRecipient ||
     process.env.CONTACT_RECIPIENT_EMAIL ||
-    "";
+    BUSINESS.email;
 
   if (recipient) {
     await sendEmail({

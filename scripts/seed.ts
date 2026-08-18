@@ -1260,7 +1260,7 @@ async function seedSettings(): Promise<void> {
     primaryPhone: "(951) 371-2601",
     secondaryPhone: "",
     faxPhone: "(951) 496-4305",
-    email: "",
+    email: "mariopanzario@yahoo.com",
     address: "",
     hours: "",
     saturdayHours: "",
@@ -1289,7 +1289,7 @@ async function seedSettings(): Promise<void> {
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
     ],
-    contactRecipient: "",
+    contactRecipient: "mariopanzario@yahoo.com",
     defaultSeo: {
       title: "Express Glass | Riverside, CA",
       description:
@@ -1313,7 +1313,7 @@ async function seedSettings(): Promise<void> {
   } else {
     await SiteSettings.create(payload);
   }
-  console.log("SiteSettings upserted (business email left empty).");
+  console.log("SiteSettings upserted.");
 }
 
 async function seedServices(): Promise<void> {

@@ -66,8 +66,12 @@ export default async function TermsPage() {
         For current project questions,{" "}
         <Link href="/contact" className="text-glass">
           contact Express Glass
-        </Link>{" "}
-        or call {BUSINESS.primaryPhone}.
+        </Link>
+        , call {BUSINESS.primaryPhone}, or email{" "}
+        <a href={`mailto:${BUSINESS.email}`} className="text-glass">
+          {BUSINESS.email}
+        </a>
+        .
       </p>
     </LegalLayout>
   );

@@ -80,6 +80,8 @@ function normalizePublicSettings(
     // Single public number only — never resurface a retired secondary line.
     secondaryPhone: "",
     faxPhone: clean(settings.faxPhone) || BUSINESS.faxPhone,
+    email: settings.email?.trim() || BUSINESS.email,
+    contactRecipient: settings.contactRecipient?.trim() || BUSINESS.email,
     address: "",
     specialOfferEnabled: false,
     specialOfferText: "",

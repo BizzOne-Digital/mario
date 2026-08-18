@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Clock, Phone, Printer, Truck } from "lucide-react";
+import { Clock, Mail, Phone, Printer, Truck } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { CtaBand } from "@/components/CtaBand";
 import { BUSINESS } from "@/lib/constants";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const settings = await getSettings();
-  const emailDisplay = settings.email?.trim() || "";
+  const emailDisplay = settings.email?.trim() || BUSINESS.email;
   const areas = settings.serviceAreas?.length ? settings.serviceAreas : AREAS;
   const imgs = PAGE_IMAGES.contact;
 
@@ -74,8 +74,9 @@ export default async function ContactPage() {
                 </p>
               ) : null}
               {emailDisplay ? (
-                <p className="text-sm text-steel">
-                  <a href={`mailto:${emailDisplay}`} className="hover:text-glass">
+                <p className="flex min-w-0 items-center gap-3 text-frost">
+                  <Mail className="h-5 w-5 shrink-0 text-glass" />
+                  <a href={`mailto:${emailDisplay}`} className="break-all hover:text-glass">
                     {emailDisplay}
                   </a>
                 </p>

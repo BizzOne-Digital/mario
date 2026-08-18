@@ -52,7 +52,7 @@ export function localBusinessJsonLd(settings: SettingsLike) {
       ? settings.serviceAreas
       : ["Riverside", "Corona", "Southern California"]
     ).map((name) => ({ "@type": "Place", name })),
-    ...(settings.email ? { email: settings.email } : {}),
+    email: settings.email || BUSINESS.email,
     ...(settings.secondaryPhone?.trim()
       ? { contactPoint: [{ "@type": "ContactPoint", telephone: settings.secondaryPhone, contactType: "customer service" }] }
       : {}),

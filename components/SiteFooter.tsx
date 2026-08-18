@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Printer } from "lucide-react";
+import { Mail, Phone, Printer } from "lucide-react";
 import { BUSINESS, FOOTER_LINKS, NAV_LINKS } from "@/lib/constants";
 
 type Props = {
@@ -19,7 +19,7 @@ export function SiteFooter({
   primaryPhone = BUSINESS.primaryPhone,
   secondaryPhone = BUSINESS.secondaryPhone,
   faxPhone = BUSINESS.faxPhone,
-  email = "",
+  email = BUSINESS.email,
   licenseNumber = BUSINESS.licenseNumber,
   footerDescription = "Express Glass provides fully mobile residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
 }: Props) {
@@ -98,8 +98,9 @@ export function SiteFooter({
             </p>
           ) : null}
           {emailDisplay ? (
-            <p>
-              <a href={`mailto:${emailDisplay}`} className="hover:text-glass">
+            <p className="flex min-w-0 items-start gap-2">
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-glass" />
+              <a href={`mailto:${emailDisplay}`} className="break-all hover:text-glass">
                 {emailDisplay}
               </a>
             </p>

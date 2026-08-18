@@ -50,7 +50,7 @@ export default async function RootLayout({
       <body className="flex min-h-full w-full max-w-full flex-col overflow-x-clip font-sans text-frost">
         <JsonLdScript data={localBusinessJsonLd(settings)} />
         <SiteChrome
-          email={settings.email || ""}
+          email={settings.email || BUSINESS.email}
           introEnabled={settings.introEnabled !== false}
           primaryPhone={settings.primaryPhone || BUSINESS.primaryPhone}
           logoSrc={settings.logoDark || settings.logo || "/logos/express-glass-logo-dark.svg"}

@@ -34,7 +34,11 @@ export default async function AccessibilityPage() {
       <h2 className="!mt-8 font-display text-2xl text-frost">Feedback and assistance</h2>
       <p>
         If you encounter a barrier while using the site, need content in an alternate format, or require help requesting
-        an estimate, please call {BUSINESS.primaryPhone} or use our{" "}
+        an estimate, please call {BUSINESS.primaryPhone}, email{" "}
+        <a href={`mailto:${BUSINESS.email}`} className="text-glass">
+          {BUSINESS.email}
+        </a>
+        , or use our{" "}
         <Link href="/contact" className="text-glass">
           contact page
         </Link>
@@ -44,7 +48,7 @@ export default async function AccessibilityPage() {
       <h2 className="!mt-8 font-display text-2xl text-frost">Business contact</h2>
       <p>
         {BUSINESS.name} · Fully mobile · {BUSINESS.city}, {BUSINESS.state} area · {BUSINESS.primaryPhone}
-        {BUSINESS.faxPhone ? ` · Fax ${BUSINESS.faxPhone}` : ""} · CA License #
+        {BUSINESS.faxPhone ? ` · Fax ${BUSINESS.faxPhone}` : ""} · {BUSINESS.email} · CA License #
         {BUSINESS.licenseNumber}
       </p>
     </LegalLayout>

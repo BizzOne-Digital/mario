@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
+import { BUSINESS } from "@/lib/constants";
 
 export interface SendEmailOptions {
   to: string | string[];
@@ -10,20 +11,20 @@ export interface SendEmailOptions {
   from?: string;
 }
 
+function smtpPort(): number {
+  return Number(process.env.SMTP_PORT || "465");
+}
+
 function isEmailConfigured(): boolean {
-  return Boolean(
-    process.env.SMTP_HOST &&
-      process.env.SMTP_USER &&
-      process.env.SMTP_PASS &&
-      (process.env.SMTP_FROM || process.env.CONTACT_RECIPIENT_EMAIL),
-  );
+  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
 }
 
 function createTransport() {
+  const port = smtpPort();
   const options: SMTPTransport.Options = {
     host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT || "587"),
-    secure: process.env.SMTP_SECURE === "true",
+    port,
+    secure: process.env.SMTP_SECURE === "true" || port === 465,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -50,20 +51,23 @@ export async function sendEmail(options: SendEmailOptions): Promise<boolean> {
   const from =
     options.from ||
     process.env.SMTP_FROM ||
-    process.env.CONTACT_RECIPIENT_EMAIL ||
-    "noreply@localhost";
+    `Express Glass <${process.env.SMTP_USER || BUSINESS.email}>`;
 
-  const transport = createTransport();
-  await transport.sendMail({
-    from,
-    to: options.to,
-    subject: options.subject,
-    text: options.text,
-    html: options.html,
-    replyTo: options.replyTo,
-  });
-
-  return true;
+  try {
+    const transport = createTransport();
+    await transport.sendMail({
+      from,
+      to: options.to,
+      subject: options.subject,
+      text: options.text,
+      html: options.html,
+      replyTo: options.replyTo,
+    });
+    return true;
+  } catch (error) {
+    console.error("[email] Send failed:", error);
+    return false;
+  }
 }
 
 export function emailConfigured(): boolean {

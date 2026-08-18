@@ -42,6 +42,7 @@ export const BUSINESS = {
   secondaryPhoneTel: "",
   faxPhone: "(951) 496-4305",
   faxPhoneTel: "+19514964305",
+  email: "mariopanzario@yahoo.com",
   address: "",
   addressLine1: "",
   city: "Riverside",

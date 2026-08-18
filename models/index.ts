@@ -341,7 +341,7 @@ const SiteSettingsSchema = new Schema(
     primaryPhone: { type: String, default: "(951) 371-2601" },
     secondaryPhone: { type: String, default: "" },
     faxPhone: { type: String, default: "(951) 496-4305" },
-    email: { type: String, default: "" },
+    email: { type: String, default: "mariopanzario@yahoo.com" },
     address: { type: String, default: "" },
     hours: { type: String, default: "" },
     saturdayHours: { type: String, default: "" },
@@ -378,7 +378,7 @@ const SiteSettingsSchema = new Schema(
         "Express Glass provides residential and commercial glass services across Riverside, Corona, and surrounding Southern California communities.",
     },
     footerLinks: [FooterLinkSchema],
-    contactRecipient: { type: String, default: "" },
+    contactRecipient: { type: String, default: "mariopanzario@yahoo.com" },
     defaultSeo: {
       type: DefaultSeoSchema,
       default: () => ({
