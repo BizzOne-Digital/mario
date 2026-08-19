@@ -52,7 +52,19 @@ export function ContactForm() {
         body: JSON.stringify(payload),
       });
       if (!res.ok) {
-        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        const data = (await res.json().catch(() => null)) as {
+          error?: string;
+          details?: Array<{ message?: string; path?: Array<string | number> }>;
+        } | null;
+        if (data?.error === "Validation failed" && Array.isArray(data.details)) {
+          const first = data.details[0];
+          const field = first?.path?.[0];
+          throw new Error(
+            first?.message
+              ? `${field ? `${String(field)}: ` : ""}${first.message}`
+              : "Please check the form and try again.",
+          );
+        }
         throw new Error(data?.error || "Unable to send message.");
       }
       setStatus("success");
@@ -60,7 +72,13 @@ export function ContactForm() {
       reset();
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Something went wrong.");
+      if (err instanceof TypeError) {
+        setMessage(
+          "Could not reach the server. Refresh the page and try again, or call (951) 371-2601.",
+        );
+      } else {
+        setMessage(err instanceof Error ? err.message : "Something went wrong.");
+      }
     }
   };
 
