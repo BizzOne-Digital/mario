@@ -5,12 +5,41 @@ import {
   jsonOk,
   parseJsonBody,
 } from "@/lib/api";
-import { BUSINESS } from "@/lib/constants";
-import { sendEmail } from "@/lib/email";
+import {
+  contactSubmissionErrorMessage,
+  getLeadRecipient,
+  notifyContactInquiry,
+  tryContactEmailFallback,
+  type ContactInquiryFields,
+} from "@/lib/lead-notifications";
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
 import { contactSchema } from "@/lib/validations";
 import { Inquiry, SiteSettings } from "@/models";
+
+function toInquiryFields(fields: {
+  fullName: string;
+  email: string;
+  phone: string;
+  service: string;
+  propertyType: string;
+  location: string;
+  preferredMethod: string;
+  preferredDate?: string;
+  message: string;
+}): ContactInquiryFields {
+  return {
+    fullName: sanitizePlainText(fields.fullName),
+    email: fields.email.toLowerCase(),
+    phone: sanitizePlainText(fields.phone),
+    service: sanitizePlainText(fields.service),
+    propertyType: sanitizePlainText(fields.propertyType),
+    location: sanitizePlainText(fields.location),
+    preferredMethod: sanitizePlainText(fields.preferredMethod),
+    preferredDate: sanitizePlainText(fields.preferredDate || ""),
+    message: sanitizePlainText(fields.message),
+  };
+}
 
 export async function POST(request: Request) {
   const limited = rateLimit(`contact:${getClientIp(request)}`, 5, 60_000);
@@ -21,63 +50,38 @@ export async function POST(request: Request) {
   const parsed = await parseJsonBody(request, contactSchema);
   if ("response" in parsed) return parsed.response;
 
-  const { website, ...fields } = parsed.data;
+  const { website, ...rawFields } = parsed.data;
   if (website && website.trim().length > 0) {
     return jsonOk({ ok: true });
   }
+
+  const fields = toInquiryFields(rawFields);
 
   try {
     await connectDb();
 
     const inquiry = await Inquiry.create({
-      fullName: sanitizePlainText(fields.fullName),
-      email: fields.email.toLowerCase(),
-      phone: sanitizePlainText(fields.phone),
-      service: sanitizePlainText(fields.service),
-      propertyType: sanitizePlainText(fields.propertyType),
-      location: sanitizePlainText(fields.location),
-      preferredMethod: sanitizePlainText(fields.preferredMethod),
-      preferredDate: sanitizePlainText(fields.preferredDate),
-      message: sanitizePlainText(fields.message),
+      ...fields,
       status: "new",
     });
 
     const settings = await SiteSettings.findOne().lean();
-    const recipient =
-      settings?.contactRecipient ||
-      process.env.CONTACT_RECIPIENT_EMAIL ||
-      BUSINESS.email;
+    const recipient = getLeadRecipient(settings?.contactRecipient);
 
     if (recipient) {
       // Email notification is best-effort — never block a saved inquiry.
-      await sendEmail({
-        to: recipient,
-        subject: `New contact inquiry from ${inquiry.fullName}`,
-        replyTo: inquiry.email,
-        text: [
-          `Name: ${inquiry.fullName}`,
-          `Email: ${inquiry.email}`,
-          `Phone: ${inquiry.phone}`,
-          `Service: ${inquiry.service}`,
-          `Property: ${inquiry.propertyType}`,
-          `Location: ${inquiry.location}`,
-          `Preferred method: ${inquiry.preferredMethod}`,
-          `Preferred date: ${inquiry.preferredDate || "n/a"}`,
-          "",
-          inquiry.message,
-        ].join("\n"),
-      });
+      await notifyContactInquiry(fields, recipient);
     }
 
     return jsonOk({ ok: true, id: String(inquiry._id) }, 201);
   } catch (error) {
     console.error("[contact] submission failed:", error);
-    const detail = error instanceof Error ? error.message : "";
-    const message = detail.includes("MONGODB_URI")
-      ? "The site database is not configured. Please call (951) 371-2601."
-      : /connect|ECONNREFUSED|Server selection|timed out/i.test(detail)
-        ? "We could not reach our database. Please call (951) 371-2601."
-        : "We could not save your message right now. Please call (951) 371-2601.";
-    return jsonError(message, 500);
+
+    const emailed = await tryContactEmailFallback(fields);
+    if (emailed) {
+      return jsonOk({ ok: true, deliveredBy: "email" }, 201);
+    }
+
+    return jsonError(contactSubmissionErrorMessage(error), 500);
   }
 }

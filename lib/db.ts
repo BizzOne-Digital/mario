@@ -36,7 +36,10 @@ export async function connectDb(): Promise<typeof mongoose> {
   if (!cache.promise) {
     cache.promise = mongoose.connect(uri, {
       bufferCommands: false,
-      autoIndex: true,
+      autoIndex: process.env.NODE_ENV !== "production",
+      serverSelectionTimeoutMS: 10_000,
+      socketTimeoutMS: 45_000,
+      maxPoolSize: 10,
     });
   }
 
