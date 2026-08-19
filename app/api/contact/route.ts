@@ -69,8 +69,13 @@ export async function POST(request: Request) {
     const recipient = getLeadRecipient(settings?.contactRecipient);
 
     if (recipient) {
-      // Email notification is best-effort — never block a saved inquiry.
-      await notifyContactInquiry(fields, recipient);
+      const emailed = await notifyContactInquiry(fields, recipient);
+      if (!emailed) {
+        console.error(
+          "[contact] Inquiry saved but email notification failed.",
+          JSON.stringify({ inquiryId: String(inquiry._id), recipient }),
+        );
+      }
     }
 
     return jsonOk({ ok: true, id: String(inquiry._id) }, 201);

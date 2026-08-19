@@ -19,18 +19,59 @@ function isEmailConfigured(): boolean {
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
 }
 
-function createTransport() {
-  const port = smtpPort();
-  const options: SMTPTransport.Options = {
-    host: process.env.SMTP_HOST,
-    port,
-    secure: process.env.SMTP_SECURE === "true" || port === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+async function sendWithFallback(options: SendEmailOptions, from: string): Promise<boolean> {
+  const primaryPort = smtpPort();
+  const attempts: SMTPTransport.Options[] = [
+    {
+      host: process.env.SMTP_HOST,
+      port: primaryPort,
+      secure: process.env.SMTP_SECURE === "true" || primaryPort === 465,
+      requireTLS: primaryPort === 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
     },
-  };
-  return nodemailer.createTransport(options);
+  ];
+
+  // Yahoo often accepts 587 when 465 is blocked.
+  if (process.env.SMTP_HOST?.includes("yahoo.com") && primaryPort === 465) {
+    attempts.push({
+      host: process.env.SMTP_HOST,
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+  }
+
+  let lastError: unknown;
+  for (const config of attempts) {
+    try {
+      const transport = nodemailer.createTransport(config);
+      await transport.sendMail({
+        from,
+        to: options.to,
+        subject: options.subject,
+        text: options.text,
+        html: options.html,
+        replyTo: options.replyTo,
+      });
+      return true;
+    } catch (error) {
+      lastError = error;
+      console.error(
+        `[email] Send failed on port ${config.port}:`,
+        error instanceof Error ? error.message : error,
+      );
+    }
+  }
+
+  console.error("[email] All SMTP attempts failed.", lastError);
+  return false;
 }
 
 /**
@@ -54,16 +95,7 @@ export async function sendEmail(options: SendEmailOptions): Promise<boolean> {
     `Express Glass <${process.env.SMTP_USER || BUSINESS.email}>`;
 
   try {
-    const transport = createTransport();
-    await transport.sendMail({
-      from,
-      to: options.to,
-      subject: options.subject,
-      text: options.text,
-      html: options.html,
-      replyTo: options.replyTo,
-    });
-    return true;
+    return await sendWithFallback(options, from);
   } catch (error) {
     console.error("[email] Send failed:", error);
     return false;
