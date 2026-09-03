@@ -8,6 +8,7 @@ import {
 } from "@/lib/api";
 import { BUSINESS } from "@/lib/constants";
 import { sendEmail } from "@/lib/email";
+import { sendEstimateConfirmationEmail } from "@/lib/lead-notifications";
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
 import { estimateSchema } from "@/lib/validations";
@@ -102,6 +103,27 @@ export async function POST(request: Request) {
         estimate.projectDescription || estimate.details || "",
       ].join("\n"),
     });
+  }
+
+  const confirmed = await sendEstimateConfirmationEmail({
+    reference: estimate.reference,
+    name: estimate.name,
+    email: estimate.email,
+    phone: estimate.phone,
+    service: estimate.service,
+    propertyType: estimate.propertyType,
+    location: estimate.location,
+    requestType: estimate.requestType,
+    urgency: estimate.urgency,
+    preferredDate: estimate.preferredDate,
+    preferredTime: estimate.preferredTime,
+    projectDescription: estimate.projectDescription || estimate.details || "",
+  });
+  if (!confirmed) {
+    console.error(
+      "[estimate] Request saved but confirmation email failed.",
+      JSON.stringify({ estimateId: String(estimate._id), email: estimate.email }),
+    );
   }
 
   return jsonOk(

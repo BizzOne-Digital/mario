@@ -51,6 +51,86 @@ export async function notifyContactInquiry(
   });
 }
 
+export async function sendContactConfirmationEmail(
+  fields: ContactInquiryFields,
+): Promise<boolean> {
+  if (!fields.email.trim()) return false;
+
+  const firstName = fields.fullName.trim().split(/\s+/)[0] || fields.fullName;
+
+  return sendEmail({
+    to: fields.email,
+    subject: `We received your message — ${BUSINESS.name}`,
+    replyTo: BUSINESS.email,
+    text: [
+      `Hi ${firstName},`,
+      "",
+      `Thank you for contacting ${BUSINESS.name}. We received your message and will get back to you soon.`,
+      "",
+      "Here is a copy of what you sent:",
+      "",
+      formatContactInquiryEmail(fields),
+      "",
+      `If your project is urgent, please call us at ${BUSINESS.primaryPhone}.`,
+      "",
+      `— ${BUSINESS.name}`,
+      BUSINESS.email,
+    ].join("\n"),
+  });
+}
+
+export type EstimateConfirmationFields = {
+  reference: string;
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  propertyType: string;
+  location: string;
+  requestType: string;
+  urgency: string;
+  preferredDate: string;
+  preferredTime: string;
+  projectDescription: string;
+};
+
+export async function sendEstimateConfirmationEmail(
+  fields: EstimateConfirmationFields,
+): Promise<boolean> {
+  if (!fields.email.trim()) return false;
+
+  const firstName = fields.name.trim().split(/\s+/)[0] || fields.name;
+
+  return sendEmail({
+    to: fields.email,
+    subject: `Estimate request received — ${fields.reference}`,
+    replyTo: BUSINESS.email,
+    text: [
+      `Hi ${firstName},`,
+      "",
+      `Thank you for your estimate request with ${BUSINESS.name}. We received your details and will follow up soon.`,
+      "",
+      `Reference: ${fields.reference}`,
+      `Service: ${fields.service}`,
+      `Property: ${fields.propertyType}`,
+      `Location: ${fields.location}`,
+      `Request type: ${fields.requestType}`,
+      `Urgency: ${fields.urgency || "standard"}`,
+      `Preferred date: ${fields.preferredDate || "n/a"}`,
+      `Preferred time: ${fields.preferredTime || "n/a"}`,
+      "",
+      fields.projectDescription || "",
+      "",
+      `Questions? Call ${BUSINESS.primaryPhone} or reply to this email.`,
+      "",
+      `— ${BUSINESS.name}`,
+      BUSINESS.email,
+    ]
+      .filter((line, index, lines) => !(line === "" && lines[index - 1] === ""))
+      .join("\n"),
+  });
+}
+
 export function contactSubmissionErrorMessage(error: unknown): string {
   const detail = error instanceof Error ? error.message : String(error);
 

@@ -68,7 +68,7 @@ export function ContactForm() {
         throw new Error(data?.error || "Unable to send message.");
       }
       setStatus("success");
-      setMessage("Thank you. Your message has been received.");
+      setMessage("Thank you. Your message has been received — check your email for a confirmation.");
       reset();
     } catch (err) {
       setStatus("error");

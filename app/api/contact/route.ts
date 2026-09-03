@@ -9,6 +9,7 @@ import {
   contactSubmissionErrorMessage,
   getLeadRecipient,
   notifyContactInquiry,
+  sendContactConfirmationEmail,
   tryContactEmailFallback,
   type ContactInquiryFields,
 } from "@/lib/lead-notifications";
@@ -78,12 +79,21 @@ export async function POST(request: Request) {
       }
     }
 
+    const confirmed = await sendContactConfirmationEmail(fields);
+    if (!confirmed) {
+      console.error(
+        "[contact] Inquiry saved but confirmation email failed.",
+        JSON.stringify({ inquiryId: String(inquiry._id), email: fields.email }),
+      );
+    }
+
     return jsonOk({ ok: true, id: String(inquiry._id) }, 201);
   } catch (error) {
     console.error("[contact] submission failed:", error);
 
     const emailed = await tryContactEmailFallback(fields);
     if (emailed) {
+      await sendContactConfirmationEmail(fields);
       return jsonOk({ ok: true, deliveredBy: "email" }, 201);
     }
 
