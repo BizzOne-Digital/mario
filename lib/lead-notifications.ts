@@ -1,12 +1,8 @@
-import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
+import { BUSINESS } from "@/lib/constants";
 import { emailConfigured, sendEmail } from "@/lib/email";
 
-export function getLeadRecipient(fallbackFromDb?: string | null): string {
-  return resolveBusinessEmail(
-    fallbackFromDb ||
-      process.env.CONTACT_RECIPIENT_EMAIL ||
-      BUSINESS.email,
-  );
+export function getLeadRecipient(): string {
+  return BUSINESS.email;
 }
 
 export type ContactInquiryFields = {

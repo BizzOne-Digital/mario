@@ -6,6 +6,7 @@ import {
   jsonOk,
   parseJsonBody,
 } from "@/lib/api";
+import { ensureBusinessEmailSettings } from "@/lib/data";
 import { sendEmail } from "@/lib/email";
 import {
   getLeadRecipient,
@@ -14,7 +15,7 @@ import {
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
 import { estimateSchema } from "@/lib/validations";
-import { EstimateRequest, SiteSettings } from "@/models";
+import { EstimateRequest } from "@/models";
 
 export async function POST(request: Request) {
   const limited = rateLimit(`estimate:${getClientIp(request)}`, 5, 60_000);
@@ -31,6 +32,7 @@ export async function POST(request: Request) {
   }
 
   await connectDb();
+  await ensureBusinessEmailSettings();
 
   let estimate = null;
 
@@ -76,8 +78,7 @@ export async function POST(request: Request) {
     return jsonError("Could not create estimate request", 500);
   }
 
-  const settings = await SiteSettings.findOne().lean();
-  const recipient = getLeadRecipient(settings?.contactRecipient);
+  const recipient = getLeadRecipient();
 
   if (recipient) {
     await sendEmail({

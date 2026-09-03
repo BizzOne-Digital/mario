@@ -56,14 +56,27 @@ export const BUSINESS = {
 } as const;
 
 /** Legacy typo saved in older DB rows / env vars — mailbox does not exist. */
-const RETIRED_BUSINESS_EMAIL = "mariopanzario@yahoo.com";
+export const RETIRED_BUSINESS_EMAIL = "mariopanzario@yahoo.com";
 
 /** Single canonical inbox for display and form notifications. */
 export function resolveBusinessEmail(value?: string | null): string {
   const trimmed = value?.trim() || "";
   if (!trimmed) return BUSINESS.email;
-  if (trimmed.toLowerCase() === RETIRED_BUSINESS_EMAIL) return BUSINESS.email;
-  return trimmed;
+
+  const parts = trimmed
+    .split(/[,;]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (parts.length > 1) {
+    return BUSINESS.email;
+  }
+
+  if (parts[0]!.toLowerCase() === RETIRED_BUSINESS_EMAIL) {
+    return BUSINESS.email;
+  }
+
+  return parts[0]!;
 }
 
 export const PROCESS_STEPS = [

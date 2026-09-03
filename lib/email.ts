@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
 
 export interface SendEmailOptions {
   to: string | string[];
@@ -9,6 +9,21 @@ export interface SendEmailOptions {
   html?: string;
   replyTo?: string;
   from?: string;
+}
+
+function normalizeRecipients(to: string | string[]): string | string[] {
+  const list = Array.isArray(to) ? to : [to];
+  const expanded = list.flatMap((entry) =>
+    entry
+      .split(/[,;]/)
+      .map((part) => part.trim())
+      .filter(Boolean),
+  );
+  const resolved = expanded.map((address) => resolveBusinessEmail(address));
+  const unique = [...new Set(resolved.map((address) => address.toLowerCase()))];
+  if (unique.length === 0) return BUSINESS.email;
+  if (unique.length === 1) return unique[0]!;
+  return unique;
 }
 
 function smtpPort(): number {
@@ -54,7 +69,7 @@ async function sendWithFallback(options: SendEmailOptions, from: string): Promis
       const transport = nodemailer.createTransport(config);
       await transport.sendMail({
         from,
-        to: options.to,
+        to: normalizeRecipients(options.to),
         subject: options.subject,
         text: options.text,
         html: options.html,

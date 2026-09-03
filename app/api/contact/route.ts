@@ -1,4 +1,5 @@
 import { connectDb } from "@/lib/db";
+import { ensureBusinessEmailSettings } from "@/lib/data";
 import {
   getClientIp,
   jsonError,
@@ -16,7 +17,7 @@ import {
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
 import { contactSchema } from "@/lib/validations";
-import { Inquiry, SiteSettings } from "@/models";
+import { Inquiry } from "@/models";
 
 function toInquiryFields(fields: {
   fullName: string;
@@ -60,14 +61,14 @@ export async function POST(request: Request) {
 
   try {
     await connectDb();
+    await ensureBusinessEmailSettings();
 
     const inquiry = await Inquiry.create({
       ...fields,
       status: "new",
     });
 
-    const settings = await SiteSettings.findOne().lean();
-    const recipient = getLeadRecipient(settings?.contactRecipient);
+    const recipient = getLeadRecipient();
 
     if (recipient) {
       const emailed = await notifyContactInquiry(fields, recipient);

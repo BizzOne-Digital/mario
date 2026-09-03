@@ -46,6 +46,22 @@ async function withDbFallback<T>(fn: () => Promise<T>, fallback: T): Promise<T> 
   }
 }
 
+/** Fix legacy typo emails in MongoDB whenever forms run. */
+export async function ensureBusinessEmailSettings(): Promise<void> {
+  try {
+    await connectDb();
+    const settings = await SiteSettings.findOne().lean();
+    if (!settings) return;
+
+    const email = resolveBusinessEmail(settings.email);
+    if (settings.email !== email || settings.contactRecipient !== email) {
+      await SiteSettings.updateOne({}, { $set: { email, contactRecipient: email } });
+    }
+  } catch (error) {
+    console.error("[settings] Could not normalize business email:", error);
+  }
+}
+
 export async function getSettings(): Promise<
   Omit<SiteSettingsDoc, "_id" | "createdAt" | "updatedAt"> & { _id?: string }
 > {
