@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="120" viewBox="0 0 460 120" fill="none" role="img" aria-label="Express Glass">
+  <rect width="460" height="120" rx="16" fill="#F4FAFC"/>
+  <path d="M52 30H130V46H70V58H122V73H70V90H130V106H52V30Z" fill="#071A2B"/>
+  <path d="M160 30H240C257.673 30 272 44.3269 272 62C272 79.6731 257.673 94 240 94H178V106H160V30ZM178 46V78H236C244.837 78 252 70.8366 252 62C252 53.1634 244.837 46 236 46H178Z" fill="#0D5F73"/>
+  <path d="M294 30H310V106H294V30Z" fill="#7E8B94"/>
+  <path d="M328 30H346L394 106H376L328 30Z" fill="#071A2B" fill-opacity="0.85"/>
+  <path d="M338 30H356L404 106H386L338 30Z" fill="#7FD7EA" fill-opacity="0.65"/>
+  <text x="160" y="115" fill="#101820" font-family="Georgia, serif" font-size="13" letter-spacing="2">EXPRESS GLASS</text>
+</svg>

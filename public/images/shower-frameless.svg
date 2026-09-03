@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Frameless shower enclosure">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071A2B"/>
+      <stop offset="55%" stop-color="#0D2A40"/>
+      <stop offset="100%" stop-color="#101820"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#CDEFF5" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#7FD7EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#F4FAFC" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7FD7EA" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#CDEFF5" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#7FD7EA" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="980" cy="120" r="90" fill="#7FD7EA" opacity="0.12"/>
+  <rect x="0" y="120" width="1200" height="8" fill="url(#ray)" opacity="0.5"/>
+  
+  <rect x="280" y="140" width="640" height="520" rx="8" fill="#101820" stroke="#7E8B94"/>
+  <path d="M320 180 H880 V600 H320 Z" fill="url(#glass)" stroke="#7FD7EA" stroke-opacity="0.55"/>
+  <line x1="600" y1="180" x2="600" y2="600" stroke="#CDEFF5" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="620" cy="380" r="10" fill="#7E8B94"/>
+  <rect x="300" y="620" width="600" height="30" rx="4" fill="#071A2B"/>
+
+  <text x="48" y="760" fill="#7E8B94" font-family="Georgia, serif" font-size="22">Frameless shower enclosure</text>
+</svg>
