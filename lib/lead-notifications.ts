@@ -1,8 +1,11 @@
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
 import { emailConfigured, sendEmail } from "@/lib/email";
 
 export function getLeadRecipient(): string {
-  return BUSINESS.email;
+  const fromEnv =
+    process.env.LEAD_NOTIFICATION_EMAIL?.trim() ||
+    process.env.CONTACT_RECIPIENT_EMAIL?.trim();
+  return fromEnv ? resolveBusinessEmail(fromEnv) : BUSINESS.email;
 }
 
 export type ContactInquiryFields = {

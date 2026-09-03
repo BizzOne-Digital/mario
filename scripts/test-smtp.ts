@@ -33,7 +33,6 @@ loadEnvFile(".env.local");
 loadEnvFile(".env");
 
 const host = process.env.SMTP_HOST;
-const port = Number(process.env.SMTP_PORT || "465");
 const user = process.env.SMTP_USER;
 const pass = process.env.SMTP_PASS;
 const to = process.env.CONTACT_RECIPIENT_EMAIL || user;
@@ -70,7 +69,7 @@ async function main() {
   console.log(`  To:   ${to}`);
   console.log("");
 
-  let transport =
+  const transport =
     (await tryVerify("Port 465 (SSL)", {
       host,
       port: 465,
