@@ -149,10 +149,7 @@ export default function AdminDashboardPage() {
         </div>
       ) : null}
 
-      <MissingEmailBanner
-        email={settings?.email}
-        contactRecipient={settings?.contactRecipient}
-      />
+      <MissingEmailBanner email={settings?.email} />
 
       {showStorageWarning ? (
         <div className="flex items-start gap-3 rounded-xl border border-orange-500/40 bg-orange-500/10 px-4 py-3 text-sm text-orange-100">

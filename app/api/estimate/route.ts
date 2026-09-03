@@ -6,9 +6,11 @@ import {
   jsonOk,
   parseJsonBody,
 } from "@/lib/api";
-import { BUSINESS } from "@/lib/constants";
 import { sendEmail } from "@/lib/email";
-import { sendEstimateConfirmationEmail } from "@/lib/lead-notifications";
+import {
+  getLeadRecipient,
+  sendEstimateConfirmationEmail,
+} from "@/lib/lead-notifications";
 import { rateLimit } from "@/lib/rate-limit";
 import { sanitizePlainText } from "@/lib/sanitize";
 import { estimateSchema } from "@/lib/validations";
@@ -75,10 +77,7 @@ export async function POST(request: Request) {
   }
 
   const settings = await SiteSettings.findOne().lean();
-  const recipient =
-    settings?.contactRecipient ||
-    process.env.CONTACT_RECIPIENT_EMAIL ||
-    BUSINESS.email;
+  const recipient = getLeadRecipient(settings?.contactRecipient);
 
   if (recipient) {
     await sendEmail({

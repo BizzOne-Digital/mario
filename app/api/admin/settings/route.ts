@@ -4,9 +4,21 @@ import {
   parseJsonBody,
   requireAdminSession,
 } from "@/lib/api";
+import { resolveBusinessEmail } from "@/lib/constants";
 import { revalidateSettingsAffected } from "@/lib/revalidate";
 import { siteSettingsUpdateSchema } from "@/lib/validations";
 import { SiteSettings } from "@/models";
+
+function normalizeSettingsEmails<T extends { email?: string; contactRecipient?: string }>(
+  data: T,
+): T {
+  const email = resolveBusinessEmail(data.email);
+  return {
+    ...data,
+    email,
+    contactRecipient: email,
+  };
+}
 
 export async function GET() {
   const auth = await requireAdminSession();
@@ -19,7 +31,7 @@ export async function GET() {
     settings = created.toObject();
   }
 
-  return jsonOk({ settings });
+  return jsonOk({ settings: normalizeSettingsEmails(settings) });
 }
 
 export async function PUT(request: Request) {
@@ -30,9 +42,10 @@ export async function PUT(request: Request) {
   if ("response" in parsed) return parsed.response;
 
   await connectDb();
+  const payload = normalizeSettingsEmails(parsed.data);
   const settings = await SiteSettings.findOneAndUpdate(
     {},
-    { $set: parsed.data },
+    { $set: payload },
     { new: true, upsert: true, setDefaultsOnInsert: true },
   ).lean();
 

@@ -1,16 +1,8 @@
 import Link from "next/link";
 import { MailWarning } from "lucide-react";
 
-export function MissingEmailBanner({
-  email,
-  contactRecipient,
-}: {
-  email?: string | null;
-  contactRecipient?: string | null;
-}) {
-  const missingBusiness = !email?.trim();
-  const missingRecipient = !contactRecipient?.trim();
-  if (!missingBusiness && !missingRecipient) return null;
+export function MissingEmailBanner({ email }: { email?: string | null }) {
+  if (email?.trim()) return null;
 
   return (
     <div className="flex items-start gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
@@ -18,11 +10,8 @@ export function MissingEmailBanner({
       <div className="flex-1">
         <p className="font-medium text-amber-50">Email settings incomplete</p>
         <p className="mt-1 text-amber-100/90">
-          {missingBusiness && missingRecipient
-            ? "Business email and contact recipient are empty. Inquiry and estimate notifications will not send."
-            : missingBusiness
-              ? "Business email is empty. Add it in Settings so the site can display a contact address."
-              : "Contact recipient email is empty. Form submissions may not be delivered."}
+          Business email is empty. Add it in Settings so the site can display a contact
+          address and form notifications can send.
         </p>
         <Link
           href="/admin/settings"

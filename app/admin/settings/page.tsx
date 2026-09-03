@@ -101,10 +101,7 @@ export default function AdminSettingsPage() {
         </button>
       }
     >
-      <MissingEmailBanner
-        email={settings.email}
-        contactRecipient={settings.contactRecipient}
-      />
+      <MissingEmailBanner email={settings.email} />
 
       <section className="grid gap-4 rounded-xl border border-slate-800 bg-slate-900/60 p-4 md:grid-cols-2">
         <h2 className="text-sm font-semibold text-slate-200 md:col-span-2">Business</h2>
@@ -133,7 +130,7 @@ export default function AdminSettingsPage() {
             placeholder="(951) 496-4305"
           />
         </label>
-        <label className="block text-sm text-slate-300">
+        <label className="block text-sm text-slate-300 md:col-span-2">
           Business email
           <input
             type="email"
@@ -141,15 +138,9 @@ export default function AdminSettingsPage() {
             onChange={(e) => patch("email", e.target.value)}
             className={`${fieldClass()} ${!settings.email.trim() ? "border-amber-500/60" : ""}`}
           />
-        </label>
-        <label className="block text-sm text-slate-300">
-          Contact recipient (notifications)
-          <input
-            type="email"
-            value={settings.contactRecipient}
-            onChange={(e) => patch("contactRecipient", e.target.value)}
-            className={`${fieldClass()} ${!settings.contactRecipient.trim() ? "border-amber-500/60" : ""}`}
-          />
+          <span className="mt-1 block text-xs text-slate-500">
+            Shown on the site and used for contact and estimate form notifications.
+          </span>
         </label>
         <label className="block text-sm text-slate-300 md:col-span-2">
           Address

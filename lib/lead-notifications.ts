@@ -1,11 +1,11 @@
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
 import { emailConfigured, sendEmail } from "@/lib/email";
 
 export function getLeadRecipient(fallbackFromDb?: string | null): string {
-  return (
-    fallbackFromDb?.trim() ||
-    process.env.CONTACT_RECIPIENT_EMAIL?.trim() ||
-    BUSINESS.email
+  return resolveBusinessEmail(
+    fallbackFromDb ||
+      process.env.CONTACT_RECIPIENT_EMAIL ||
+      BUSINESS.email,
   );
 }
 

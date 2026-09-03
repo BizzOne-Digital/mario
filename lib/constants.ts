@@ -55,6 +55,17 @@ export const BUSINESS = {
   ownerName: "Mario",
 } as const;
 
+/** Legacy typo saved in older DB rows / env vars — mailbox does not exist. */
+const RETIRED_BUSINESS_EMAIL = "mariopanzario@yahoo.com";
+
+/** Single canonical inbox for display and form notifications. */
+export function resolveBusinessEmail(value?: string | null): string {
+  const trimmed = value?.trim() || "";
+  if (!trimmed) return BUSINESS.email;
+  if (trimmed.toLowerCase() === RETIRED_BUSINESS_EMAIL) return BUSINESS.email;
+  return trimmed;
+}
+
 export const PROCESS_STEPS = [
   {
     title: "Contact",

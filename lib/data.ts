@@ -31,7 +31,7 @@ import {
   SiteSettings,
   Testimonial,
 } from "@/models";
-import { BUSINESS, type ServiceSlug } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
 
 function leanDoc<T>(doc: unknown): T {
   return JSON.parse(JSON.stringify(doc)) as T;
@@ -52,7 +52,21 @@ export async function getSettings(): Promise<
   return withDbFallback(async () => {
     const settings = await SiteSettings.findOne().lean();
     if (!settings) return { ...DEFAULT_SETTINGS };
-    return normalizePublicSettings(leanDoc(settings));
+
+    const email = resolveBusinessEmail(settings.email);
+    const contactRecipient = resolveBusinessEmail(settings.contactRecipient);
+
+    if (
+      settings.email !== email ||
+      settings.contactRecipient !== contactRecipient
+    ) {
+      await SiteSettings.updateOne(
+        {},
+        { $set: { email, contactRecipient } },
+      );
+    }
+
+    return normalizePublicSettings(leanDoc({ ...settings, email, contactRecipient }));
   }, { ...DEFAULT_SETTINGS });
 }
 
@@ -80,8 +94,8 @@ function normalizePublicSettings(
     // Single public number only — never resurface a retired secondary line.
     secondaryPhone: "",
     faxPhone: clean(settings.faxPhone) || BUSINESS.faxPhone,
-    email: settings.email?.trim() || BUSINESS.email,
-    contactRecipient: settings.contactRecipient?.trim() || BUSINESS.email,
+    email: resolveBusinessEmail(settings.email),
+    contactRecipient: resolveBusinessEmail(settings.email),
     address: "",
     specialOfferEnabled: false,
     specialOfferText: "",
