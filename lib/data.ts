@@ -31,7 +31,7 @@ import {
   SiteSettings,
   Testimonial,
 } from "@/models";
-import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail, type ServiceSlug } from "@/lib/constants";
 
 function leanDoc<T>(doc: unknown): T {
   return JSON.parse(JSON.stringify(doc)) as T;
