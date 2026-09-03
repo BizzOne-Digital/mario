@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, Printer } from "lucide-react";
-import { BUSINESS, FOOTER_LINKS, NAV_LINKS } from "@/lib/constants";
+import { BUSINESS, FOOTER_LINKS, NAV_LINKS, resolveBusinessEmail } from "@/lib/constants";
 
 type Props = {
   businessName?: string;
@@ -23,7 +23,7 @@ export function SiteFooter({
   licenseNumber = BUSINESS.licenseNumber,
   footerDescription = "Express Glass provides fully mobile residential and light commercial glass services — showers, window and door glass, and small 1st-floor storefronts — across Riverside, Corona, and surrounding Southern California communities.",
 }: Props) {
-  const emailDisplay = email.trim();
+  const emailDisplay = resolveBusinessEmail(email);
   const faxDisplay = faxPhone.trim();
 
   return (

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const settings = await getSettings();
-  const emailDisplay = settings.email?.trim() || BUSINESS.email;
+  const emailDisplay = BUSINESS.email;
   const areas = settings.serviceAreas?.length ? settings.serviceAreas : AREAS;
   const imgs = PAGE_IMAGES.contact;
 

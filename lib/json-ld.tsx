@@ -1,4 +1,4 @@
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, resolveBusinessEmail } from "@/lib/constants";
 import type { SiteSettingsDoc } from "@/lib/types";
 
 type SettingsLike = Pick<
@@ -52,7 +52,7 @@ export function localBusinessJsonLd(settings: SettingsLike) {
       ? settings.serviceAreas
       : ["Riverside", "Corona", "Southern California"]
     ).map((name) => ({ "@type": "Place", name })),
-    email: settings.email || BUSINESS.email,
+    email: resolveBusinessEmail(settings.email),
     ...(settings.secondaryPhone?.trim()
       ? { contactPoint: [{ "@type": "ContactPoint", telephone: settings.secondaryPhone, contactType: "customer service" }] }
       : {}),
